@@ -3,10 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madeline Beebe | Portfolio</title>
+    <title>THE PURPOSE PROTOCOL | Madeline Beebe</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Pixel Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        .font-pixel { font-family: 'Press Start 2P', monospace; }
+        .font-terminal { font-family: 'VT323', monospace; }
+        .crt-glow {
+            text-shadow: 0 0 5px rgba(52, 211, 153, 0.5);
+        }
+        .crt-overlay {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            );
+            background-size: 100% 4px;
+        }
+    </style>
 </head>
-<body>
-    <h1>Site Under Construction</h1>
-    <p>Content and layout coming soon.</p>
+<body class="bg-zinc-950 text-emerald-400 font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6 crt-overlay">
+
+    <!-- ARCADE CABINET OUTER FRAME -->
+    <div class="max-w-5xl mx-auto border-4 border-zinc-700 bg-black rounded-3xl p-4 md:p-8 shadow-2xl shadow-emerald-900/20">
+
+        <!-- HEADER HUD -->
+        <header class="border-b-2 border-emerald-800 pb-4 mb-6">
+            <div class="flex flex-wrap justify-between items-center text-xs font-pixel text-zinc-400 mb-3 gap-2">
+                <span class="text-emerald-400 crt-glow">● POWER: ON</span>
+                <span>THE PURPOSE PROTOCOL V2.7</span>
+                <span class="text-amber-400">CREDITS: ∞</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-slate-200">
+                <div><span class="text-zinc-500">PLAYER:</span> Madeline Beebe</div>
+                <div><span class="text-zinc-500">CLASS:</span> Systems & Analytics</div>
+                <div><span class="text-zinc-500">BASE:</span> Tuscaloosa, AL</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-slate-200 mt-1">
+                <div><span class="text-zinc-500">HP:</span> 100/100 (BS Aero 3.80)</div>
+                <div><span class="text-zinc-500">MP:</span> 99/99 (MBA '27)</div>
+                <div class="text-amber-400"><span class="text-zinc-500">QUEST:</span> May 2027 Deploy</div>
+            </div>
+
+            <div class="mt-3 pt-2 border-t border-zinc-900 text-sm text-emerald-300">
+                <span class="font-pixel text-xs text-amber-400">ALIGNMENT:</span> Purpose-Driven | Priority: Measurable Human & Environmental Difference-Making
+            </div>
+        </header>
+
+        <!-- CAMPAIGN LOG / MISSIONS -->
+        <section class="mb-8">
+            <h2 class="font-pixel text-xs md:text-sm text-amber-400 mb-4 crt-glow">
+                🎮 CAMPAIGN LOG // COMPLETED MISSIONS
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- MISSION 01 -->
+                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
+                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 01: TWINspect Drone</div>
+                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +500 FLIGHT SAFETY]</div>
+                    <p class="text-zinc-300 text-sm leading-snug mb-3">
+                        Engineered a hangar-contained drone and digital twin system to automate commercial aircraft inspections, eliminating technician fall hazards and structural risks.
+                    </p>
+                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Flight Safety & Systems Lead</div>
+                </div>
+
+                <!-- MISSION 02 -->
+                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
+                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 02: DFW Transit Analytics</div>
+                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +350 CLEAN TRANSIT]</div>
+                    <p class="text-zinc-300 text-sm leading-snug mb-3">
+                        Analyzed workforce commuter data to optimize airport transportation infrastructure, reduce carbon emissions, and improve employee daily commutes.
+                    </p>
+                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Public Sector / Survey Operations</div>
+                </div>
+
+                <!-- MISSION 03 -->
+                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
+                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 03: Symphonic Signal Engine</div>
+                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +200 AUDIO DSP]</div>
+                    <p class="text-zinc-300 text-sm leading-snug mb-3">
+                        Developed a Python/Flask digital signal processing engine translating frequency arrays into real-time geometric visual web art.
+                    </p>
+                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Signal Processing / Full-Stack</div>
+                </div>
+
+                <!-- MISSION 04 -->
+                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
+                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 04: Apparatus Overhaul</div>
+                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +300 MFG UNLOCK]</div>
+                    <p class="text-zinc-300 text-sm leading-snug mb-3">
+                        Designed custom CAD/3D-printed hardware to replace failing testing apparatuses and built dynamic database tools to streamline operations.
+                    </p>
+                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Precision Hardware & Kaizen</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILL TREE / INVENTORY -->
+        <section class="mb-8 border-t border-zinc-800 pt-6">
+            <h2 class="font-pixel text-xs md:text-sm text-sky-400 mb-4 crt-glow">
+                🎒 UNLOCKED EQUIPMENT & SKILL TREE
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
+                    <span class="text-sky-300 block font-pixel text-xs">📐 CAD & FEA</span>
+                    Structural Analysis
+                </div>
+                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
+                    <span class="text-sky-300 block font-pixel text-xs">🧪 Python / Flask</span>
+                    DSP & Web Engines
+                </div>
+                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
+                    <span class="text-sky-300 block font-pixel text-xs">📊 SQL & Surveys</span>
+                    Operations Analytics
+                </div>
+                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
+                    <span class="text-sky-300 block font-pixel text-xs">⚡ 6S / Kaizen</span>
+                    Process Overhauls
+                </div>
+                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
+                    <span class="text-sky-300 block font-pixel text-xs">🚣 DI Rowing</span>
+                    High-Stress Focus
+                </div>
+                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
+                    <span class="text-sky-300 block font-pixel text-xs">🏛️ Leadership</span>
+                    Org & Budget Management
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER COMMAND -->
+        <footer class="border-t-2 border-emerald-800 pt-4 text-center">
+            <a href="mailto:msbeebe@outlook.com" class="font-pixel text-xs md:text-sm text-amber-400 hover:text-amber-300 crt-glow">
+                > PRESS START TO CONTACT // MSBEEBE@OUTLOOK.COM ↗
+            </a>
+        </footer>
+
+    </div>
+
 </body>
 </html>
