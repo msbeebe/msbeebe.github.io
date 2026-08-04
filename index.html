@@ -3,142 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE PURPOSE PROTOCOL | Madeline Beebe</title>
-    <!-- Tailwind CSS CDN -->
+    <title>CHRONICLES OF AGENCIA | Madeline Beebe</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Pixel Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        medSlate: '#403A5C',
+                        medSage: '#58AD8B',
+                        medGold: '#F7DA20',
+                        medAmber: '#E48F15',
+                        medCrimson: '#B33254',
+                        medDarkBg: '#1f1a2e'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         .font-pixel { font-family: 'Press Start 2P', monospace; }
         .font-terminal { font-family: 'VT323', monospace; }
-        .crt-glow {
-            text-shadow: 0 0 5px rgba(52, 211, 153, 0.5);
-        }
-        .crt-overlay {
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
-                rgba(0, 0, 0, 0.25) 50%
-            );
-            background-size: 100% 4px;
-        }
+        .gold-glow { text-shadow: 0 0 6px rgba(247, 218, 32, 0.6); }
+        .sage-glow { text-shadow: 0 0 6px rgba(88, 173, 139, 0.5); }
     </style>
 </head>
-<body class="bg-zinc-950 text-emerald-400 font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6 crt-overlay">
+<body class="bg-medDarkBg text-slate-200 font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6">
 
-    <!-- ARCADE CABINET OUTER FRAME -->
-    <div class="max-w-5xl mx-auto border-4 border-zinc-700 bg-black rounded-3xl p-4 md:p-8 shadow-2xl shadow-emerald-900/20">
+    <!-- MAIN GAME CONTAINER -->
+    <div class="max-w-6xl mx-auto border-4 border-medSage bg-medSlate rounded-3xl p-4 md:p-8 shadow-2xl">
 
-        <!-- HEADER HUD -->
-        <header class="border-b-2 border-emerald-800 pb-4 mb-6">
-            <div class="flex flex-wrap justify-between items-center text-xs font-pixel text-zinc-400 mb-3 gap-2">
-                <span class="text-emerald-400 crt-glow">● POWER: ON</span>
-                <span>THE PURPOSE PROTOCOL V2.7</span>
-                <span class="text-amber-400">CREDITS: ∞</span>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-slate-200">
-                <div><span class="text-zinc-500">PLAYER:</span> Madeline Beebe</div>
-                <div><span class="text-zinc-500">CLASS:</span> Systems & Analytics</div>
-                <div><span class="text-zinc-500">BASE:</span> Tuscaloosa, AL</div>
+        <!-- HEADER / PERSONA IDENTIFICATION SECTION -->
+        <header class="border-b-2 border-medSage/40 pb-6 mb-6">
+            <div class="flex flex-wrap justify-between items-center text-xs font-pixel text-medSage mb-4 gap-2">
+                <span class="text-medGold gold-glow">● STATUS: ONLINE</span>
+                <span class="text-slate-200">CHRONICLES OF AGENCIA</span>
+                <span class="text-medAmber">REALM: MAY 2027</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-slate-200 mt-1">
-                <div><span class="text-zinc-500">HP:</span> 100/100 (BS Aero 3.80)</div>
-                <div><span class="text-zinc-500">MP:</span> 99/99 (MBA '27)</div>
-                <div class="text-amber-400"><span class="text-zinc-500">QUEST:</span> May 2027 Deploy</div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                
+                <!-- PERSONA TILE WITH BLONDE ALCHEMIST PIXEL AVATAR -->
+                <div class="lg:col-span-2 flex items-center gap-4 bg-medDarkBg/80 p-4 rounded-2xl border-2 border-medSage/50">
+                    <!-- SNES Pixel Blonde Alchemist Icon -->
+                    <div class="w-20 h-20 bg-medSlate border-2 border-medGold rounded-xl p-1 flex-shrink-0 flex items-center justify-center relative shadow-md">
+                        <svg viewBox="0 0 16 16" class="w-full h-full shape-rendering-crisp" style="image-rendering: pixelated;">
+                            <!-- Hood / Alchemist Hat -->
+                            <rect x="3" y="1" width="10" height="4" fill="#B33254" />
+                            <rect x="2" y="3" width="12" height="2" fill="#E48F15" />
+                            <!-- Blonde Hair -->
+                            <rect x="2" y="5" width="12" height="4" fill="#F7DA20" />
+                            <rect x="1" y="8" width="3" height="5" fill="#F7DA20" />
+                            <rect x="12" y="8" width="3" height="5" fill="#F7DA20" />
+                            <!-- Face -->
+                            <rect x="4" y="6" width="8" height="5" fill="#ffdbac" />
+                            <!-- Eyes -->
+                            <rect x="5" y="7" width="2" height="2" fill="#403A5C" />
+                            <rect x="9" y="7" width="2" height="2" fill="#403A5C" />
+                            <!-- Alchemist Cloak / Robe -->
+                            <rect x="3" y="11" width="10" height="5" fill="#58AD8B" />
+                            <rect x="7" y="11" width="2" height="5" fill="#F7DA20" />
+                        </svg>
+                        <span class="absolute -bottom-2 -right-2 bg-medGold text-medDarkBg font-pixel text-[8px] px-1 rounded border border-medDarkBg">LVL 5</span>
+                    </div>
+
+                    <div>
+                        <h1 class="font-pixel text-sm md:text-base text-medGold gold-glow mb-1">Madeline Beebe</h1>
+                        <p class="text-sm text-slate-300 font-mono">Cosmonautics Engineer & Business Analytics Magister</p>
+                        <div class="mt-2 text-xs text-medSage font-mono flex flex-wrap gap-x-4 gap-y-1">
+                            <span>RANK: Level 5 Magister[cite: 2]</span>
+                            <span>LOCATION: Tuscaloosa, AL[cite: 2]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUEST IN PROGRESS TILE -->
+                <div class="bg-medDarkBg/80 p-4 rounded-2xl border-2 border-medGold shadow-lg">
+                    <span class="font-pixel text-[10px] text-medGold gold-glow block mb-1">⚡ QUEST IN PROGRESS</span>
+                    <h2 class="font-pixel text-xs text-medAmber mb-1">Year 5 at The Academy[cite: 2]</h2>
+                    <p class="text-xs text-slate-300">Level 5 Magister Stage — Executing Capstone Projects & Teaching Apprenticeship[cite: 2].</p>
+                </div>
+
             </div>
 
-            <div class="mt-3 pt-2 border-t border-zinc-900 text-sm text-emerald-300">
-                <span class="font-pixel text-xs text-amber-400">ALIGNMENT:</span> Purpose-Driven | Priority: Measurable Human & Environmental Difference-Making
+            <div class="mt-4 pt-3 border-t border-medSage/20 text-sm text-medSage">
+                <span class="font-pixel text-xs text-medGold">MAIN DIRECTIVE:</span> Deploy technical & analytical rigor to generate measurable human & environmental difference.
             </div>
         </header>
 
-        <!-- CAMPAIGN LOG / MISSIONS -->
+        <!-- THE ACADEMY & QUICK ACTION TILES GRID -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            
+            <!-- THE ACADEMY CASTLE TILE -->
+            <div class="md:col-span-2 border-2 border-medSage bg-medDarkBg/90 p-5 rounded-2xl flex gap-4 items-start shadow-md">
+                <div class="w-14 h-14 bg-medSlate border-2 border-medSage rounded-xl flex items-center justify-center flex-shrink-0 text-2xl p-2">
+                    <!-- Castle Icon -->
+                    🏰
+                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-pixel text-xs text-medGold gold-glow">The Academy</h3>
+                        <span class="text-xs font-mono text-medSage bg-medSage/20 px-2 py-0.5 rounded">40,000+ Apprentices[cite: 2]</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-2 font-mono">University of Alabama • Tuscaloosa, Alabama[cite: 2]</p>
+                    <div class="space-y-1 text-xs text-slate-200 font-mono">
+                        <div class="flex items-center gap-2">
+                            <span class="text-medSage">✓ Degree Path I:</span> B.S. Aerospace Engineering & Mechanics <span class="text-medGold">(Completed Spring 2026)[cite: 2]</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-medAmber">⏳ Degree Path II:</span> Master of Business Administration - Business Analytics <span class="text-medAmber">(In Progress Summer 2026)[cite: 2]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS TILE -->
+            <div class="flex flex-col gap-3 justify-between">
+                <!-- RESUME TILE -->
+                <a href="Madeline_Beebe_Resume.pdf" target="_blank" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medGold hover:border-medAmber rounded-xl text-medGold hover:text-medAmber transition-colors font-pixel text-xs shadow-md group">
+                    <span>📄 Download Resume Scroll</span>
+                    <span class="group-hover:translate-x-1 transition-transform">↗</span>
+                </a>
+
+                <!-- LINKEDIN TILE -->
+                <a href="https://www.linkedin.com/in/madeline-beebel/" target="_blank" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medSage hover:border-medGold rounded-xl text-medSage hover:text-medGold transition-colors font-pixel text-xs shadow-md group">
+                    <span>🌐 LinkedIn Guild Profile</span>
+                    <span class="group-hover:translate-x-1 transition-transform">↗</span>
+                </a>
+
+                <!-- FULL CAMPAIGN LOG LINK TILE -->
+                <a href="campaign.html" class="flex items-center justify-between p-3 bg-medCrimson/80 border-2 border-medCrimson hover:bg-medCrimson rounded-xl text-white transition-colors font-pixel text-xs shadow-md group">
+                    <span>📜 View Full Campaign Log</span>
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+        </section>
+
+        <!-- RECENT CAMPAIGN ADDITIONS (PREVIEW) -->
         <section class="mb-8">
-            <h2 class="font-pixel text-xs md:text-sm text-amber-400 mb-4 crt-glow">
-                🎮 CAMPAIGN LOG // COMPLETED MISSIONS
-            </h2>
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-pixel text-xs md:text-sm text-medGold gold-glow">
+                    ⚡ RECENT CAMPAIGN ADDITIONS (MAGISTER & LATE BACCARAEUS)[cite: 2]
+                </h2>
+                <a href="campaign.html" class="font-pixel text-[10px] text-medSage hover:text-medGold">See All Stages →</a>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- MISSION 01 -->
-                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
-                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 01: TWINspect Drone</div>
-                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +500 FLIGHT SAFETY]</div>
-                    <p class="text-zinc-300 text-sm leading-snug mb-3">
-                        Engineered a hangar-contained drone and digital twin system to automate commercial aircraft inspections, eliminating technician fall hazards and structural risks.
-                    </p>
-                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Flight Safety & Systems Lead</div>
+                
+                <!-- MISSION 5A -->
+                <div class="border-2 border-medGold bg-medDarkBg p-4 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-pixel text-xs text-medGold gold-glow">MISSION 5A: Symphonic Visualizer[cite: 2]</span>
+                        <span class="px-2 py-0.5 bg-medGold/20 text-medGold text-xs font-mono rounded">Completed Summer 2026[cite: 2]</span>
+                    </div>
+                    <p class="text-xs text-medSage mb-2 font-mono">Location: Technologic Dimension[cite: 2]</p>
+                    <p class="text-slate-300 text-sm mb-3">Engineered full-stack audio signal processing web engine mapping frequency spectrums into real-time geometry.</p>
+                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: 💻 Technology X & XI, 🏃 Endurance IV, 🧮 Arithmetic X[cite: 2]</div>
                 </div>
 
-                <!-- MISSION 02 -->
-                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
-                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 02: DFW Transit Analytics</div>
-                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +350 CLEAN TRANSIT]</div>
-                    <p class="text-zinc-300 text-sm leading-snug mb-3">
-                        Analyzed workforce commuter data to optimize airport transportation infrastructure, reduce carbon emissions, and improve employee daily commutes.
-                    </p>
-                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Public Sector / Survey Operations</div>
+                <!-- MISSION 5B -->
+                <div class="border-2 border-medAmber bg-medDarkBg p-4 rounded-xl">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-pixel text-xs text-medAmber">MISSION 5B: DFW Airport Research Paper[cite: 2]</span>
+                        <span class="px-2 py-0.5 bg-medAmber/20 text-medAmber text-xs font-mono rounded">In Progress[cite: 2]</span>
+                    </div>
+                    <p class="text-xs text-medSage mb-2 font-mono">Co-Authorship Research Scroll[cite: 2]</p>
+                    <p class="text-slate-300 text-sm mb-3">Synthesizing workforce commuting survey analytics for clean transit infrastructure strategies.</p>
+                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: ⏳ Loading...[cite: 2]</div>
                 </div>
 
-                <!-- MISSION 03 -->
-                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
-                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 03: Symphonic Signal Engine</div>
-                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +200 AUDIO DSP]</div>
-                    <p class="text-zinc-300 text-sm leading-snug mb-3">
-                        Developed a Python/Flask digital signal processing engine translating frequency arrays into real-time geometric visual web art.
-                    </p>
-                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Signal Processing / Full-Stack</div>
+                <!-- AGENCIUM PENTAU -->
+                <div class="border-2 border-medAmber bg-medDarkBg p-4 rounded-xl">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-pixel text-xs text-medAmber">AGENCIUM PENTAU: Academy Teaching Apprentice[cite: 2]</span>
+                        <span class="px-2 py-0.5 bg-medAmber/20 text-medAmber text-xs font-mono rounded">Fall 2026[cite: 2]</span>
+                    </div>
+                    <p class="text-xs text-medSage mb-2 font-mono">Location: Tuscaloosa, Alabama[cite: 2]</p>
+                    <p class="text-slate-300 text-sm mb-3">Guiding Academy apprentices through quantitative coursework and leadership development.</p>
+                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: ⏳ Loading...[cite: 2]</div>
                 </div>
 
-                <!-- MISSION 04 -->
-                <div class="border-2 border-emerald-600/60 bg-zinc-900/80 p-4 rounded-xl hover:border-emerald-400 transition-colors">
-                    <div class="font-pixel text-xs text-amber-400 mb-1">STAGE 04: Apparatus Overhaul</div>
-                    <div class="text-xs text-emerald-300 mb-2 font-mono">[QUEST CLEAR: +300 MFG UNLOCK]</div>
-                    <p class="text-zinc-300 text-sm leading-snug mb-3">
-                        Designed custom CAD/3D-printed hardware to replace failing testing apparatuses and built dynamic database tools to streamline operations.
-                    </p>
-                    <div class="text-xs text-zinc-500 font-mono">DOMAIN: Precision Hardware & Kaizen</div>
+                <!-- AGENCIUM QUARTI -->
+                <div class="border-2 border-medSage bg-medDarkBg p-4 rounded-xl">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-pixel text-xs text-medSage">AGENCIUM QUARTI: C&J Resources Apprenticeship[cite: 2]</span>
+                        <span class="px-2 py-0.5 bg-medSage/20 text-medSage text-xs font-mono rounded">Summer 2026[cite: 2]</span>
+                    </div>
+                    <p class="text-xs text-medSage mb-2 font-mono">Location: Tuscaloosa, Alabama[cite: 2]</p>
+                    <p class="text-slate-300 text-sm mb-3">Youth STEM mentoring, educational data analysis reports, and career preparedness workshops[cite: 2].</p>
+                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: ⚔️ Troop Mgmt VII-VIII, 🧑‍🏫 Apprenticemaking I-II, 📜 Strategy XI[cite: 2]</div>
                 </div>
+
             </div>
         </section>
 
-        <!-- SKILL TREE / INVENTORY -->
-        <section class="mb-8 border-t border-zinc-800 pt-6">
-            <h2 class="font-pixel text-xs md:text-sm text-sky-400 mb-4 crt-glow">
-                🎒 UNLOCKED EQUIPMENT & SKILL TREE
+        <!-- SKILLS LOG MATRIX (WITH SKILL ICONS & MISSION REFERENCES) -->
+        <section class="mb-8 border-t border-medSage/30 pt-6">
+            <h2 class="font-pixel text-xs md:text-sm text-medSage mb-4 sage-glow">
+                🎒 SKILLS LOG & CONTRIBUTION MATRIX
             </h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <span class="text-sky-300 block font-pixel text-xs">📐 CAD & FEA</span>
-                    Structural Analysis
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs">
+                
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🚀 Cosmonautics</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – IX[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: 2A, 3C, 3T, 4B, 4C, 4D[cite: 2]</span>
                 </div>
-                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <span class="text-sky-300 block font-pixel text-xs">🧪 Python / Flask</span>
-                    DSP & Web Engines
+
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">💻 Technology</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – XI[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: 2A, 2D, 3B, 3C, 3T, 4B, 4C, 4D, 4Q, 5A[cite: 2]</span>
                 </div>
-                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <span class="text-sky-300 block font-pixel text-xs">📊 SQL & Surveys</span>
-                    Operations Analytics
+
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">📜 Strategy</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – XI[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: 1A, 2A, 3A, 3C, 4A, 4B, 4C, 4D, 4Q[cite: 2]</span>
                 </div>
-                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <span class="text-sky-300 block font-pixel text-xs">⚡ 6S / Kaizen</span>
-                    Process Overhauls
+
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🪙 Coin (Finance)</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – VIII[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: 2B, 3A, 3B, 4B, 4C, 4D, 4Q[cite: 2]</span>
                 </div>
-                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <span class="text-sky-300 block font-pixel text-xs">🚣 DI Rowing</span>
-                    High-Stress Focus
+
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">⚔️ Troop Mgmt</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – VIII[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: 2B, 3A, 3B, 3T, 4C, 4D, 4Q[cite: 2]</span>
                 </div>
-                <div class="p-2 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <span class="text-sky-300 block font-pixel text-xs">🏛️ Leadership</span>
-                    Org & Budget Management
+
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🤝 Teamwork</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – X[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: 1A, 2B, 2D, 3B, 3T, 4A, 4C, 4D, 4Q[cite: 2]</span>
+                </div>
+
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🏗️ Building</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – V[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: 2D, 3C, 3T, 4B, 4C[cite: 2]</span>
+                </div>
+
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
+                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🧑‍🏫 Apprenticemaking</div>
+                    <p class="text-[11px] text-slate-300 mb-1">Ranks I – II[cite: 2]</p>
+                    <span class="text-[10px] text-medSage font-mono block">Missions: Agencium Quarti (C&J)[cite: 2]</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HOBBY CAMPAIGN BRANCH -->
+        <section class="mb-8 border-t border-medSage/30 pt-6">
+            <h2 class="font-pixel text-xs md:text-sm text-medSage mb-4 sage-glow">
+                🎒 HOBBY CAMPAIGN BRANCH (SIDE QUESTS & PERKS)
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 bg-medDarkBg/80 border border-medSage/40 rounded-xl">
+                    <span class="text-medGold font-pixel text-xs block mb-2">🎵 BARD ARTS</span>
+                    <p class="text-sm text-slate-300">Over 100 Spotify Scrolls Curated. Atmospheric & Orchestral Audio Alchemy.</p>
+                </div>
+                <div class="p-4 bg-medDarkBg/80 border border-medSage/40 rounded-xl">
+                    <span class="text-medGold font-pixel text-xs block mb-2">🎨 VISUAL CRAFTING</span>
+                    <p class="text-sm text-slate-300">Analog Collage Making, Video Editing, & Creative Journaling Scrolls.</p>
+                </div>
+                <div class="p-4 bg-medDarkBg/80 border border-medSage/40 rounded-xl">
+                    <span class="text-medGold font-pixel text-xs block mb-2">🚣 ATHLETIC ENDURANCE</span>
+                    <p class="text-sm text-slate-300">Academy Varsity Rowing Team[cite: 2]. EMOM Protocols, Free Weights, & Stair Stepper.</p>
                 </div>
             </div>
         </section>
 
         <!-- FOOTER COMMAND -->
-        <footer class="border-t-2 border-emerald-800 pt-4 text-center">
-            <a href="mailto:msbeebe@outlook.com" class="font-pixel text-xs md:text-sm text-amber-400 hover:text-amber-300 crt-glow">
-                > PRESS START TO CONTACT // MSBEEBE@OUTLOOK.COM ↗
+        <footer class="border-t-2 border-medSage/40 pt-4 text-center">
+            <a href="mailto:msbeebe@outlook.com" class="font-pixel text-xs md:text-sm text-medGold hover:text-medAmber gold-glow">
+                > PRESS START TO TRANSMIT MESSAGES // MSBEEBE@OUTLOOK.COM ↗
             </a>
         </footer>
 
