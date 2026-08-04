@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERWORLD MAP | Madeline Beebe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        medSlate: '#403A5C',
+                        medSage: '#58AD8B',
+                        medGold: '#F7DA20',
+                        medAmber: '#E48F15',
+                        medCrimson: '#B33254',
+                        medDarkBg: '#1f1a2e'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .font-pixel { font-family: 'Press Start 2P', monospace; }
+        .font-terminal { font-family: 'VT323', monospace; }
+        .gold-glow { text-shadow: 0 0 6px rgba(247, 218, 32, 0.6); }
+        .node-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="bg-medDarkBg text-slate-200 font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6">
+
+    <div class="max-w-6xl mx-auto border-4 border-medSage bg-medSlate rounded-3xl p-4 md:p-8 shadow-2xl">
+
+        <!-- HEADER -->
+        <header class="border-b-2 border-medSage/40 pb-4 mb-6 flex justify-between items-center flex-wrap gap-4">
+            <div>
+                <a href="index.html" class="font-pixel text-xs text-medSage hover:text-medGold mb-2 inline-block">← Return to Dashboard</a>
+                <h1 class="font-pixel text-sm md:text-base text-medGold gold-glow">OVERWORLD CAMPAIGN MAP</h1>
+                <p class="text-xs text-slate-300 font-mono">Select a Realm Node to Inspect Campaign Dossiers</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="index.html" class="px-3 py-2 bg-medDarkBg border border-medSage text-medSage font-pixel text-xs rounded-xl hover:bg-medSage hover:text-medDarkBg transition-colors">Dashboard</a>
+                <a href="campaign.html" class="px-3 py-2 bg-medDarkBg border border-medGold text-medGold font-pixel text-xs rounded-xl hover:bg-medGold hover:text-medDarkBg transition-colors">Campaign Log</a>
+            </div>
+        </header>
+
+        <!-- MAP CONTAINER -->
+        <div class="relative w-full bg-medDarkBg border-2 border-medSage rounded-2xl p-4 md:p-8 overflow-hidden mb-6 shadow-inner">
+            
+            <!-- SVG PATH CONNECTIONS -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none stroke-medSage/40" stroke-width="3" stroke-dasharray="6,6">
+                <!-- Academy to Hana Forge -->
+                <line x1="50%" y1="50%" x2="20%" y2="25%" />
+                <!-- Hana Forge to Porto Harbor -->
+                <line x1="20%" y1="25%" x2="50%" y2="25%" />
+                <!-- Porto Harbor to Midwest Hangar -->
+                <line x1="50%" y1="25%" x2="80%" y2="25%" />
+                <!-- Academy to C&J Apprenticeship Guild -->
+                <line x1="50%" y1="50%" x2="25%" y2="75%" />
+                <!-- Academy to Agencia Citadel -->
+                <line x1="50%" y1="50%" x2="75%" y2="75%" stroke-class="stroke-medCrimson/50" />
+            </svg>
+
+            <!-- MAP NODES GRID -->
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 py-6">
+
+                <!-- TOP ROW: APPRENTICESHIPS & EXPEDITIONS -->
+                <div class="flex flex-col items-center">
+                    <button onclick="showDossier('hana')" class="node-pulse bg-medDarkBg border-2 border-medAmber hover:border-medGold text-medAmber p-4 rounded-2xl w-full text-center group transition-transform">
+                        <span class="text-3xl block mb-1">⚙️</span>
+                        <span class="font-pixel text-xs block text-medGold">Hana Forge</span>
+                        <span class="text-xs text-slate-400 font-mono">Cleveland, OH</span>
+                    </button>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <button onclick="showDossier('porto')" class="node-pulse bg-medDarkBg border-2 border-medAmber hover:border-medGold text-medAmber p-4 rounded-2xl w-full text-center group transition-transform">
+                        <span class="text-3xl block mb-1">⛵</span>
+                        <span class="font-pixel text-xs block text-medGold">Porto Harbor</span>
+                        <span class="text-xs text-slate-400 font-mono">Porto, Portugal</span>
+                    </button>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <button onclick="showDossier('midwest')" class="node-pulse bg-medDarkBg border-2 border-medAmber hover:border-medGold text-medAmber p-4 rounded-2xl w-full text-center group transition-transform">
+                        <span class="text-3xl block mb-1">🛩️</span>
+                        <span class="font-pixel text-xs block text-medGold">Midwest Hangar</span>
+                        <span class="text-xs text-slate-400 font-mono">Indianapolis, IN</span>
+                    </button>
+                </div>
+
+                <!-- MIDDLE ROW: STANDALONE & CENTRAL HUB -->
+                <div class="flex flex-col items-center">
+                    <button onclick="showDossier('tech')" class="node-pulse bg-medDarkBg border-2 border-medGold hover:border-medSage text-medGold p-4 rounded-2xl w-full text-center group transition-transform shadow-lg shadow-medGold/10">
+                        <span class="text-3xl block mb-1">🔮</span>
+                        <span class="font-pixel text-xs block text-medGold">Technologic Dimension</span>
+                        <span class="text-xs text-slate-400 font-mono">Symphonic Visualizer</span>
+                    </button>
+                </div>
+
+                <!-- CENTRAL HUB: THE ACADEMY -->
+                <div class="flex flex-col items-center">
+                    <button onclick="showDossier('academy')" class="node-pulse bg-medDarkBg border-4 border-medGold text-medGold p-5 rounded-2xl w-full text-center group transition-transform shadow-xl shadow-medGold/20">
+                        <span class="text-4xl block mb-1">🏰</span>
+                        <span class="font-pixel text-xs block text-medGold gold-glow">The Academy Castle</span>
+                        <span class="text-xs text-medSage font-mono">Tuscaloosa, AL (Hub)</span>
+                    </button>
+                </div>
+
+                <div class="hidden md:block"></div> <!-- Spacer -->
+
+                <!-- BOTTOM ROW: C&J GUILD & AGENCIA CITADEL -->
+                <div class="flex flex-col items-center">
+                    <button onclick="showDossier('cj')" class="node-pulse bg-medDarkBg border-2 border-medAmber hover:border-medGold text-medAmber p-4 rounded-2xl w-full text-center group transition-transform">
+                        <span class="text-3xl block mb-1">🧑‍🏫</span>
+                        <span class="font-pixel text-xs block text-medGold">C&J Guild</span>
+                        <span class="text-xs text-slate-400 font-mono">Tuscaloosa, AL</span>
+                    </button>
+                </div>
+
+                <div class="hidden md:block"></div> <!-- Spacer -->
+
+                <div class="flex flex-col items-center">
+                    <button onclick="showDossier('agencia')" class="node-pulse bg-medDarkBg border-2 border-medCrimson hover:border-medGold text-medCrimson p-4 rounded-2xl w-full text-center group transition-transform opacity-90">
+                        <span class="text-3xl block mb-1">🔒</span>
+                        <span class="font-pixel text-xs block text-medCrimson">Agencia Citadel</span>
+                        <span class="text-xs text-slate-400 font-mono">Unlocks May 2027</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DOSSIER INSPECTION DISPLAY BOX -->
+        <div id="dossier-box" class="border-2 border-medGold bg-medDarkBg p-5 rounded-2xl shadow-lg">
+            <div id="dossier-content">
+                <span class="font-pixel text-xs text-medGold gold-glow block mb-2">📜 REALM DOSSIER INSPECTOR</span>
+                <p class="text-sm text-slate-300">Click any location node on the overworld map above to inspect operations, skills acquired, and campaign history.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const dossiers = {
+            academy: `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-pixel text-xs text-medGold gold-glow">LOCATION: The Academy Castle (Tuscaloosa, AL)</span>
+                    <span class="px-2 py-0.5 bg-medGold/20 text-medGold text-xs font-mono rounded">Central Hub</span>
+                </div>
+                <p class="text-sm text-slate-200 mb-2">Primary training grounds for Aerospace Engineering (BS '26) and Business Analytics MBA ('27). Home to Crew Team training and teaching assistantships.</p>
+                <div class="text-xs text-medSage font-mono">UNLOCKED SKILLS: Cosmonautics I-IX, Strategy I-XI, Rowing I-II, Endurance I-IV</div>
+            `,
+            hana: `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-pixel text-xs text-medAmber">LOCATION: Hana Forge (Cleveland, OH)</span>
+                    <span class="px-2 py-0.5 bg-medSage/20 text-medSage text-xs font-mono rounded">Completed Summer 2024</span>
+                </div>
+                <p class="text-sm text-slate-200 mb-2">Manufacturing Engineering Apprenticeship. Designed custom 3D-printed testing apparatus and established Kaizen/6S baseline procedures.</p>
+                <div class="text-xs text-medSage font-mono">UNLOCKED SKILLS: Technology II-III, Prototyping I-II, Kaizen I, 6S I, Building I</div>
+            `,
+            porto: `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-pixel text-xs text-medAmber">LOCATION: Porto Harbor (Porto, Portugal)</span>
+                    <span class="px-2 py-0.5 bg-medSage/20 text-medSage text-xs font-mono rounded">Completed Summer 2024</span>
+                </div>
+                <p class="text-sm text-slate-200 mb-2">Dalliscape Startup Expedition at European Innovation Academy. Advised international team on business strategy and financial modeling.</p>
+                <div class="text-xs text-medSage font-mono">UNLOCKED SKILLS: Technology IV, Coin IV, Troop Management IV, Adventure II</div>
+            `,
+            midwest: `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-pixel text-xs text-medAmber">LOCATION: Midwest Hangar (Indianapolis, IN)</span>
+                    <span class="px-2 py-0.5 bg-medSage/20 text-medSage text-xs font-mono rounded">Completed Summer 2025</span>
+                </div>
+                <p class="text-sm text-slate-200 mb-2">Aircraft Manufacturing Engineering Apprenticeship. Built dynamic searchable Excel database for customer quoting and trained 20 peers on ERP systems.</p>
+                <div class="text-xs text-medSage font-mono">UNLOCKED SKILLS: Building III, Prototyping IV, Cosmonautics IV, Technology V</div>
+            `,
+            cj: `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-pixel text-xs text-medAmber">LOCATION: C&J Apprenticeship Guild (Tuscaloosa, AL)</span>
+                    <span class="px-2 py-0.5 bg-medSage/20 text-medSage text-xs font-mono rounded">In Progress Summer 2026</span>
+                </div>
+                <p class="text-sm text-slate-200 mb-2">Educational Tutoring & Youth Preparedness. Designed learning plans, analyzed 200+ student data points, and led quantitative workshops.</p>
+                <div class="text-xs text-medSage font-mono">UNLOCKED SKILLS: Troop Management VII-VIII, Apprenticemaking I-II, Strategy XI</div>
+            `,
+            tech: `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-pixel text-xs text-medGold gold-glow">LOCATION: Technologic Dimension (Standalone Node)</span>
+                    <span class="px-2 py-0.5 bg-medGold/20 text-medGold text-xs font-mono rounded">Completed Summer 2026</span>
+                </div>
+                <p class="text-sm text-slate-200 mb-2">Symphonic Visualizer Full-Stack Build. Developed Python/Flask digital signal processing engine converting audio math into polar visual art.</p>
+                <div class="text-xs text-medSage font-mono">UNLOCKED SKILLS: Technology X-XI, Endurance IV, Arithmetic X</div>
+            `,
+            agencia: `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-pixel text-xs text-medCrimson">LOCATION: Agencia Citadel (Post-Grad Deployment)</span>
+                    <span class="px-2 py-0.5 bg-medCrimson/20 text-medCrimson text-xs font-mono rounded">Unlocks May 2027</span>
+                </div>
+                <p class="text-sm text-slate-200 mb-2">Year 1 as an Agent. Dedicated to high-impact roles in flight safety, clean transportation, public sector analytics, or medical technology.</p>
+                <div class="text-xs text-medCrimson font-mono">DESTINATION: Difference-Making & Human Impact</div>
+            `
+        };
+
+        function showDossier(key) {
+            document.getElementById('dossier-content').innerHTML = dossiers[key];
+        }
+    </script>
+
+</body>
+</html>
