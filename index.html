@@ -11,12 +11,17 @@
             theme: {
                 extend: {
                     colors: {
-                        medSlate: '#403A5C',
-                        medSage: '#58AD8B',
-                        medGold: '#F7DA20',
-                        medAmber: '#E48F15',
-                        medCrimson: '#B33254',
-                        medDarkBg: '#1f1a2e'
+                        /* Previous Base Palette */
+                        medNavy: '#182039',
+                        medDenim: '#354a7a',
+                        medDarkBg: '#0f1426',
+                        medTaupe: '#d7c4a1', 
+                        /* New Earthy Medieval Palette */
+                        earthRed: '#8c4746',
+                        earthOlive: '#91c56b',
+                        earthMauve: '#c47d80',
+                        earthSlate: '#868884',
+                        earthBrown: '#7d6a5f'
                     }
                 }
             }
@@ -25,281 +30,206 @@
     <style>
         .font-pixel { font-family: 'Press Start 2P', monospace; }
         .font-terminal { font-family: 'VT323', monospace; }
-        .gold-glow { text-shadow: 0 0 6px rgba(247, 218, 32, 0.6); }
-        .sage-glow { text-shadow: 0 0 6px rgba(88, 173, 139, 0.5); }
+        
+        /* Updated Glows for New Palette */
+        .mauve-glow { text-shadow: 0 0 6px rgba(196, 125, 128, 0.5); }
+        .olive-glow { text-shadow: 0 0 6px rgba(145, 197, 107, 0.5); }
+        
         .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+        
+        /* Earthy Wooden Panel Effect */
+        .wood-panel {
+            background-color: #7d6a5f;
+            border: 2px solid #868884;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.4), 0 4px 6px rgba(0,0,0,0.4);
+        }
     </style>
 </head>
-<body class="bg-medDarkBg text-slate-200 font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6">
+<body class="bg-medDarkBg text-medTaupe font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6">
 
     <!-- MAIN GAME CONTAINER -->
-    <div class="max-w-6xl mx-auto border-4 border-medSage bg-medSlate rounded-3xl p-4 md:p-8 shadow-2xl">
+    <div class="max-w-6xl mx-auto border-4 border-earthBrown bg-medNavy rounded-3xl p-4 md:p-8 shadow-2xl">
 
         <!-- HEADER / PERSONA IDENTIFICATION SECTION -->
-        <header class="border-b-2 border-medSage/40 pb-6 mb-6">
-            <div class="flex flex-wrap justify-between items-center text-xs font-pixel text-medSage mb-4 gap-2">
-                <span class="text-medGold gold-glow">● STATUS: ONLINE</span>
-                <span class="text-slate-200">CHRONICLES OF AGENCIA</span>
-                <span class="text-medAmber">REALM: THE ACADEMY</span>
+        <header class="border-b-2 border-earthSlate/40 pb-6 mb-6">
+            <div class="flex flex-wrap justify-between items-center text-xs font-pixel text-earthSlate mb-4 gap-2">
+                <span class="text-earthOlive olive-glow">● STATUS: ONLINE</span>
+                <span class="text-earthMauve">CHRONICLES OF AGENCIA</span>
+                <span class="text-earthRed">REALM: THE ACADEMY</span>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
                 
                 <!-- PERSONA TILE WITH PIXEL AVATAR -->
-                <div class="lg:col-span-2 flex items-center gap-4 bg-medDarkBg/80 p-4 rounded-2xl border-2 border-medSage/50">
-                    <div class="w-20 h-20 bg-medSlate border-2 border-medGold rounded-xl p-1 flex-shrink-0 flex items-center justify-center relative shadow-md">
+                <div class="lg:col-span-2 flex items-center gap-4 bg-earthSlate/20 p-4 rounded-2xl border-2 border-earthBrown shadow-inner">
+                    <div class="w-20 h-20 bg-medNavy border-2 border-earthMauve rounded-xl p-1 flex-shrink-0 flex items-center justify-center relative shadow-md">
                         <img src="assets/avatars/Avatars_02.png" alt="Madeline Beebe Avatar" class="w-full h-full object-contain pixelated">
-                        <span class="absolute -bottom-2 -right-2 bg-medGold text-medDarkBg font-pixel text-[8px] px-1 rounded border border-medDarkBg">LVL 5</span>
+                        <span class="absolute -bottom-2 -right-2 bg-earthRed text-white font-pixel text-[8px] px-1.5 py-0.5 rounded border border-medNavy">LVL 5</span>
                     </div>
 
                     <div>
-                        <h1 class="font-pixel text-sm md:text-base text-medGold gold-glow mb-1">Madeline Beebe</h1>
-                        <p class="text-sm text-slate-300 font-mono">Cosmonautics and Analytics Scholar</p>
-                        <div class="mt-2 text-xs text-medSage font-mono flex flex-wrap gap-x-4 gap-y-1">
+                        <h1 class="font-pixel text-sm md:text-base text-earthMauve mauve-glow mb-1">Madeline Beebe</h1>
+                        <p class="text-sm text-medTaupe/80 font-mono">Cosmonautics and Analytics Scholar</p>
+                        <div class="mt-2 text-xs text-earthOlive font-mono flex flex-wrap gap-x-4 gap-y-1">
                             <span>RANK: Level 5 Magister</span>
-                            <span>LOCATION: The Academy (Tuscaloosa, AL)</span>
+                            <span>HUB: Tuscaloosa, AL</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- QUEST IN PROGRESS TILE -->
-                <div class="bg-medDarkBg/80 p-4 rounded-2xl border-2 border-medGold shadow-lg">
-                    <span class="font-pixel text-[10px] text-medGold gold-glow block mb-1">⚡ QUEST IN PROGRESS</span>
-                    <h2 class="font-pixel text-xs text-medAmber mb-1">Year 5 at The Academy</h2>
+                <div class="bg-earthRed/80 p-4 rounded-2xl border-2 border-earthMauve shadow-lg">
+                    <span class="font-pixel text-[10px] text-earthMauve mauve-glow block mb-1">⚡ ACTIVE QUEST</span>
+                    <h2 class="font-pixel text-xs text-white mb-1">Year 5 at The Academy</h2>
                 </div>
 
             </div>
 
-            <div class="mt-4 pt-3 border-t border-medSage/20 text-sm text-medSage">
-                <span class="font-pixel text-sm text-medGold">MAIN DIRECTIVE:</span> Leverage Skills to become a Realm Force for Good
+            <div class="mt-4 pt-3 border-t border-earthSlate/20 text-sm text-medTaupe/90">
+                <span class="font-pixel text-sm text-earthMauve">MAIN DIRECTIVE:</span> Leverage Skills to become a Realm Force for Good
             </div>
         </header>
 
-        <!-- THE ACADEMY & QUICK ACTION TILES GRID -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            
-            <!-- THE ACADEMY CASTLE TILE -->
-            <div class="md:col-span-2 border-2 border-medSage bg-medDarkBg/90 p-5 rounded-2xl flex gap-4 items-start shadow-md">
-                <div class="w-16 h-16 bg-medSlate border-2 border-medSage rounded-xl flex items-center justify-center flex-shrink-0 p-2">
+        <!-- NAVIGATION & HUB GRID -->
+        <section class="mb-10">
+            <!-- CURRENT HUB TILE -->
+            <div class="border-2 border-earthSlate bg-earthSlate/20 p-5 rounded-2xl flex gap-4 items-start shadow-md mb-4">
+                <div class="w-16 h-16 bg-medNavy border-2 border-earthBrown rounded-xl flex items-center justify-center flex-shrink-0 p-2">
                     <img src="assets/buildings/Castle.png" alt="The Academy Castle" class="w-full h-full object-contain pixelated">
                 </div>
-                <div>
+                <div class="w-full">
                     <div class="flex items-center justify-between mb-1">
-                        <h3 class="font-pixel text-xs text-medGold gold-glow">The Academy</h3>
-                        <span class="text-xs font-mono text-medSage bg-medSage/20 px-2 py-0.5 rounded">40,000+ Apprentices</span>
+                        <h3 class="font-pixel text-xs text-earthMauve mauve-glow">The Academy</h3>
+                        <span class="text-xs font-mono text-medNavy bg-earthSlate px-2 py-0.5 rounded font-bold">40,000+ Apprentices</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-2 font-mono">University of Alabama • Tuscaloosa, Alabama</p>
-                    <div class="space-y-1 text-xs text-slate-200 font-mono">
+                    <p class="text-xs text-medTaupe/70 mb-2 font-mono">University of Alabama • Tuscaloosa, Alabama</p>
+                    <div class="space-y-1 text-xs text-medTaupe font-mono">
                         <div class="flex items-center gap-2">
-                            <span class="text-medSage">Degree Path I:</span> B.S. Aerospace Engineering & Mechanics <span class="text-medGold">(Completed Spring 2026)</span>
+                            <span class="text-earthOlive">✓ Degree Path I:</span> B.S. Aerospace Engineering <span class="text-earthSlate">(Completed Spring 2026)</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="text-medAmber">Degree Path II:</span> Master of Business Administration (Analytics) <span class="text-medSage">(In Progress)</span>
+                            <span class="text-earthRed">⏳ Degree Path II:</span> Master of Business Administration <span class="text-earthSlate">(In Progress)</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ACTION BUTTONS TILE -->
-            <div class="flex flex-col gap-3 justify-between">
-                <!-- RESUME TILE -->
-                <a href="Madeline_Beebe_Resume.pdf" target="_blank" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medGold hover:border-medAmber rounded-xl text-medGold hover:text-medAmber transition-colors font-pixel text-xs shadow-md group">
-                    <span class="flex items-center gap-2">
-                        <img src="assets/ui/RegularPaper.png" alt="Scroll" class="w-5 h-5 object-contain pixelated">
-                        Resume Scroll
-                    </span>
-                    <span class="group-hover:translate-x-1 transition-transform">↗</span>
+            <!-- 3-TILE NAVIGATION ROW -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- OVERWORLD MAP -->
+                <a href="map.html" class="wood-panel p-4 rounded-xl text-medTaupe hover:text-earthOlive hover:border-earthOlive transition-colors font-pixel text-xs flex flex-col items-center justify-center gap-3 group">
+                    <img src="assets/ui/WoodTable.png" alt="Map Table" class="w-8 h-8 object-contain pixelated group-hover:scale-110 transition-transform">
+                    <span>Overworld Map</span>
                 </a>
 
-                <!-- LINKEDIN TILE -->
-                <a href="https://www.linkedin.com/in/madeline-beebel/" target="_blank" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medSage hover:border-medGold rounded-xl text-medSage hover:text-medGold transition-colors font-pixel text-xs shadow-md group">
-                    <span class="flex items-center gap-2">
-                        <img src="assets/ui/Ribbon_Blue.png" alt="Guild Seal" class="w-5 h-5 object-contain pixelated">
-                        LinkedIn Profile
-                    </span>
-                    <span class="group-hover:translate-x-1 transition-transform">↗</span>
+                <!-- ARTIFACT INVENTORY -->
+                <a href="inventory.html" class="wood-panel p-4 rounded-xl text-medTaupe hover:text-earthOlive hover:border-earthOlive transition-colors font-pixel text-xs flex flex-col items-center justify-center gap-3 group">
+                    <img src="assets/icons/Icon_06.png" alt="Artifacts" class="w-8 h-8 object-contain pixelated group-hover:scale-110 transition-transform">
+                    <span>Artifact Inventory</span>
                 </a>
 
-                <!-- OVERWORLD MAP TILE -->
-                <a href="map.html" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medAmber hover:border-medGold rounded-xl text-medAmber hover:text-medGold transition-colors font-pixel text-xs shadow-md group">
-                    <span class="flex items-center gap-2">
-                        <img src="assets/ui/WoodTable.png" alt="Map Table" class="w-5 h-5 object-contain pixelated">
-                        Overworld Map
-                    </span>
-                    <span class="group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-
-                <!-- FULL CAMPAIGN LOG LINK TILE -->
-                <a href="campaign.html" class="flex items-center justify-between p-3 bg-medCrimson/80 border-2 border-medCrimson hover:bg-medCrimson rounded-xl text-white transition-colors font-pixel text-xs shadow-md group">
-                    <span class="flex items-center gap-2">
-                        <img src="assets/ui/SpecialPaper.png" alt="Book" class="w-5 h-5 object-contain pixelated">
-                        Full Campaign Log
-                    </span>
-                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                <!-- CAMPAIGN LOG -->
+                <a href="campaign.html" class="wood-panel p-4 rounded-xl text-medTaupe hover:text-earthOlive hover:border-earthOlive transition-colors font-pixel text-xs flex flex-col items-center justify-center gap-3 group">
+                    <img src="assets/ui/SpecialPaper.png" alt="Scroll" class="w-8 h-8 object-contain pixelated group-hover:scale-110 transition-transform">
+                    <span>Campaign Log</span>
                 </a>
             </div>
-
         </section>
 
-        <!-- RECENT CAMPAIGN ADDITIONS (PREVIEW) -->
-        <section class="mb-8">
+        <!-- RECENT CAMPAIGN ADDITIONS (CONDENSED TO 2) -->
+        <section class="mb-10">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="font-pixel text-xs md:text-sm text-medGold gold-glow">
+                <h2 class="font-pixel text-xs md:text-sm text-earthMauve mauve-glow">
                     RECENT CAMPAIGN ADDITIONS
                 </h2>
-                <a href="campaign.html" class="font-pixel text-[10px] text-medSage hover:text-medGold">See All Stages →</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
                 <!-- MISSION 5A -->
-                <div class="border-2 border-medAmber bg-medDarkBg p-4 rounded-xl shadow-lg">
+                <div class="border-2 border-earthOlive bg-earthOlive/10 p-4 rounded-xl shadow-lg">
                     <div class="flex justify-between items-start mb-2">
-                        <span class="font-pixel text-xs text-medAmber">MISSION 5A: Symphonic Visualizer</span>
-                        <span class="px-2 py-0.5 bg-medGold/20 text-medAmber text-xs font-mono rounded">Summer 2026</span>
+                        <span class="font-pixel text-xs text-earthOlive">5A: Symphonic Visualizer</span>
+                        <span class="px-2 py-0.5 bg-earthSlate/30 text-earthSlate text-xs font-mono rounded">Summer 2026</span>
                     </div>
-                    <p class="text-xs text-medSage mb-2 font-mono">Location: Technologic Dimension</p>
-                    <p class="text-slate-300 text-sm mb-3">Full stack web engine to turn music into polar art.</p>
-                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: Technology X-XI, Endurance IV, Arithmetic X</div>
+                    <p class="text-xs text-medTaupe/70 mb-2 font-mono">Location: Technologic Dimension</p>
+                    <p class="text-medTaupe text-sm mb-3">Full stack web engine to turn music into polar art.</p>
+                    <div class="text-xs text-earthOlive font-mono">SKILLS UNLOCKED: Technology X-XI, Endurance IV, Arithmetic X</div>
                 </div>
 
                 <!-- MISSION 5B -->
-                <div class="border-2 border-medAmber bg-medDarkBg p-4 rounded-xl">
+                <div class="border-2 border-earthMauve bg-earthMauve/10 p-4 rounded-xl shadow-lg">
                     <div class="flex justify-between items-start mb-2">
-                        <span class="font-pixel text-xs text-medAmber">MISSION 5B: DFW Airport Research Scroll</span>
-                        <span class="px-2 py-0.5 bg-medAmber/20 text-medAmber text-xs font-mono rounded">Fall 2026</span>
+                        <span class="font-pixel text-xs text-earthMauve">5B: DFW Research Scroll</span>
+                        <span class="px-2 py-0.5 bg-earthSlate/30 text-earthSlate text-xs font-mono rounded">Fall 2026</span>
                     </div>
-                    <p class="text-xs text-medSage mb-2 font-mono">Co-Authorship on Research Scroll</p>
-                    <p class="text-slate-300 text-sm mb-3">Synthesis of commuting survey analytics for clean transit strategies.</p>
-                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: Loading...</div>
+                    <p class="text-xs text-medTaupe/70 mb-2 font-mono">Co-Authorship on Research Scroll</p>
+                    <p class="text-medTaupe text-sm mb-3">Synthesis of commuting survey analytics for clean transit strategies.</p>
+                    <div class="text-xs text-earthRed font-mono">SKILLS UNLOCKED: Loading...</div>
                 </div>
-
-                <!-- AGENCIUM PENTAU -->
-                <div class="border-2 border-medAmber bg-medDarkBg p-4 rounded-xl">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="font-pixel text-xs text-medAmber">AGENCIUM PENTAU: Academy Teaching Apprentice</span>
-                        <span class="px-2 py-0.5 bg-medAmber/20 text-medAmber text-xs font-mono rounded">Fall 2026</span>
-                    </div>
-                    <p class="text-xs text-medSage mb-2 font-mono">Location: Tuscaloosa, Alabama</p>
-                    <p class="text-slate-300 text-sm mb-3">Guiding Academy apprentices through development.</p>
-                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: Loading...</div>
-                </div>
-
-                <!-- AGENCIUM QUARTI -->
-                <div class="border-2 border-medAmber bg-medDarkBg p-4 rounded-xl">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="font-pixel text-xs text-medAmber">AGENCIUM QUARTI: C&J Resources Apprenticeship</span>
-                        <span class="px-2 py-0.5 bg-medSage/20 text-medSage text-xs font-mono rounded">Summer 2026</span>
-                    </div>
-                    <p class="text-xs text-medSage mb-2 font-mono">Location: Tuscaloosa, Alabama</p>
-                    <p class="text-slate-300 text-sm mb-3">Educational data analysis and apprenticemaking.</p>
-                    <div class="text-xs text-slate-400 font-mono">SKILLS UNLOCKED: Troop Mgmt VII-VIII, Apprenticemaking I-II</div>
-                </div>
-
             </div>
         </section>
 
-        <!-- SKILLS LOG MATRIX (WITH PIXEL ICONS) -->
-        <section class="mb-8 border-t border-medSage/30 pt-6">
-            <h2 class="font-pixel text-xs md:text-sm text-medSage mb-4 sage-glow">
-             SKILLS LOG
-            </h2>
+        <!-- SKILLS LOG MATRIX (CONDENSED TO 1 ROW) -->
+        <section class="mb-10 border-t border-earthSlate/30 pt-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-pixel text-xs md:text-sm text-earthSlate">
+                    SKILLS LOG PREVIEW
+                </h2>
+                <a href="#" class="font-pixel text-[10px] text-earthOlive hover:text-earthMauve transition-colors">View Full Ledger →</a>
+            </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs">
+            <!-- Single Row Grid (4 items on desktop) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                <div class="p-3 bg-medNavy border border-earthBrown rounded-xl flex items-center gap-3">
                     <img src="assets/icons/Icon_01.png" alt="Cosmonautics" class="w-8 h-8 object-contain pixelated flex-shrink-0">
                     <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Cosmonautics</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – IX</p>
+                        <div class="font-pixel text-earthMauve mb-0.5 text-[10px]">Cosmonautics</div>
+                        <p class="text-[12px] text-earthSlate">Ranks I – IX</p>
                     </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                <div class="p-3 bg-medNavy border border-earthBrown rounded-xl flex items-center gap-3">
                     <img src="assets/icons/Icon_06.png" alt="Technology" class="w-8 h-8 object-contain pixelated flex-shrink-0">
                     <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Technology</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – XI</p>
+                        <div class="font-pixel text-earthMauve mb-0.5 text-[10px]">Technology</div>
+                        <p class="text-[12px] text-earthSlate">Ranks I – XI</p>
                     </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                <div class="p-3 bg-medNavy border border-earthBrown rounded-xl flex items-center gap-3">
                     <img src="assets/icons/Icon_08.png" alt="Strategy" class="w-8 h-8 object-contain pixelated flex-shrink-0">
                     <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Strategy</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – XI</p>
+                        <div class="font-pixel text-earthMauve mb-0.5 text-[10px]">Strategy</div>
+                        <p class="text-[12px] text-earthSlate">Ranks I – XI</p>
                     </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Gold_Resource.png" alt="Coin" class="w-8 h-8 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Coin</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – VIII</p>
-                    </div>
-                </div>
-
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Icon_03.png" alt="Troop Mgmt" class="w-8 h-8 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Troop Mgmt</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – VIII</p>
-                    </div>
-                </div>
-
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                <div class="p-3 bg-medNavy border border-earthBrown rounded-xl flex items-center gap-3">
                     <img src="assets/icons/Icon_05.png" alt="Teamwork" class="w-8 h-8 object-contain pixelated flex-shrink-0">
                     <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Teamwork</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – X</p>
-                    </div>
-                </div>
-
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Tool_01.png" alt="Building" class="w-8 h-8 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Building</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – V</p>
-                    </div>
-                </div>
-
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Icon_12.png" alt="Apprenticemaking" class="w-8 h-8 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Apprenticemaking</div>
-                        <p class="text-[13px] text-slate-300">Ranks I – II</p>
+                        <div class="font-pixel text-earthMauve mb-0.5 text-[10px]">Teamwork</div>
+                        <p class="text-[12px] text-earthSlate">Ranks I – X</p>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- HOBBY CAMPAIGN BRANCH -->
-        <section class="mb-8 border-t border-medSage/30 pt-6">
-            <h2 class="font-pixel text-xs md:text-sm text-medSage mb-4 sage-glow">
-             HOBBY CAMPAIGN BRANCH
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="p-4 bg-medDarkBg/80 border border-medSage/40 rounded-xl">
-                    <span class="text-medGold font-pixel text-xs block mb-2">🎵 BARD ARTS</span>
-                    <p class="text-sm text-slate-300">Over 100 Spotify Scrolls Curated. Atmospheric & Orchestral Audio Alchemy.</p>
-                </div>
-                <div class="p-4 bg-medDarkBg/80 border border-medSage/40 rounded-xl">
-                    <span class="text-medGold font-pixel text-xs block mb-2">🎨 VISUAL CRAFTING</span>
-                    <p class="text-sm text-slate-300">Analog Collage Making, Video Editing, & Creative Journaling Scrolls.</p>
-                </div>
-                <div class="p-4 bg-medDarkBg/80 border border-medSage/40 rounded-xl">
-                    <span class="text-medGold font-pixel text-xs block mb-2">🚣 ATHLETIC ENDURANCE</span>
-                    <p class="text-sm text-slate-300">Rowing Protocols, Free Weights, & Stair Stepper.</p>
-                </div>
-            </div>
+        <!-- HOBBY CAMPAIGN BRANCH (CONDENSED TEASER) -->
+        <section class="mb-4 border-t border-earthSlate/30 pt-6">
+            <a href="#" class="block w-full border-2 border-earthRed bg-earthRed/20 hover:bg-earthRed/40 p-5 rounded-2xl text-center group transition-colors shadow-md">
+                <span class="font-pixel text-xs md:text-sm text-earthMauve block mb-2 group-hover:scale-105 transition-transform">
+                    🎒 ACCESS HOBBY CAMPAIGN BRANCH ↗
+                </span>
+                <p class="text-sm text-medTaupe">Unlock the Bard Arts, Collage Arts, and Athletics Archives.</p>
+            </a>
         </section>
 
         <!-- FOOTER COMMAND -->
-        <footer class="border-t-2 border-medSage/40 pt-4 text-center">
-            <a href="mailto:msbeebe@outlook.com" class="font-pixel text-xs md:text-sm text-medGold hover:text-medAmber gold-glow">
-                > PRESS START TO TRANSMIT MESSAGE // MSBEEBE@OUTLOOK.COM ↗
+        <footer class="mt-8 pt-4 text-center">
+            <a href="mailto:msbeebe@outlook.com" class="font-pixel text-xs md:text-sm text-earthSlate hover:text-earthMauve transition-colors">
+                > PRESS START TO TRANSMIT MESSAGE // MSBEEBE@OUTLOOK.COM 
             </a>
         </footer>
 
