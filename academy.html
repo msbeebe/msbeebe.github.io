@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Academy | Cosmonautia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { medTeal: '#24555A', medIce: '#B9D6E5', medPlum: '#4E3A53', medOlive: '#698F3D', medPistachio: '#D6E685', medRose: '#D06D9C', medCream: '#F5EDB9' } },
+                fontFamily: { medieval: ['"MedievalSharp"', 'cursive'] }
+            }
+        }
+    </script>
+    <style>body { font-family: 'MedievalSharp', cursive; }</style>
+</head>
+<body class="bg-medPlum text-medCream min-h-screen p-3 md:p-6">
+
+    <div class="max-w-4xl mx-auto border-4 border-medTeal bg-medTeal/40 rounded-3xl p-6 md:p-12 shadow-2xl relative">
+        <a href="index.html" class="text-medIce hover:text-medPistachio mb-6 inline-block">← Return to Dashboard</a>
+        
+        <h1 class="text-4xl text-medPistachio border-b-2 border-medIce/40 pb-4 mb-8">The Academy</h1>
+        
+        <div class="space-y-6 text-lg">
+            <div class="bg-medPlum/60 p-6 rounded-xl border border-medIce/20">
+                <p class="text-medRose font-bold mb-2">INSTITUTION</p>
+                <p class="text-2xl text-medCream">University of Alabama</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-medPlum/60 p-6 rounded-xl border border-medIce/20">
+                    <p class="text-medRose font-bold mb-1">LOCATION</p>
+                    <p class="text-xl">Tuscaloosa, Alabama</p>
+                </div>
+                <div class="bg-medPlum/60 p-6 rounded-xl border border-medIce/20">
+                    <p class="text-medRose font-bold mb-1">POPULATION</p>
+                    <p class="text-xl">40,000+ Apprentices</p>
+                </div>
+            </div>
+
+            <div class="bg-medPlum/60 p-6 rounded-xl border border-medOlive">
+                <p class="text-medOlive text-xl mb-2">Degree Path I</p>
+                <p class="text-2xl text-medCream mb-2">Bachelor’s of Science of Aerospace Engineering and Mechanics</p>
+                <p class="text-medPistachio bg-medOlive/30 inline-block px-3 py-1 rounded">Status: Completed as of Spring 2026</p>
+            </div>
+
+            <div class="bg-medPlum/60 p-6 rounded-xl border border-medRose">
+                <p class="text-medRose text-xl mb-2">Degree Path II</p>
+                <p class="text-2xl text-medCream mb-1">Masters of Business Administration</p>
+                <p class="text-medIce mb-3">Concentration: Business Analytics</p>
+                <p class="text-medCream bg-medRose/30 inline-block px-3 py-1 rounded">Status: In Progress as of Summer 2026</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
