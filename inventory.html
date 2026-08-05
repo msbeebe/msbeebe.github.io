@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTIFACT INVENTORY | Madeline Beebe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        medSlate: '#403A5C',
+                        medSage: '#58AD8B',
+                        medGold: '#F7DA20',
+                        medAmber: '#E48F15',
+                        medCrimson: '#B33254',
+                        medDarkBg: '#1f1a2e',
+                        parchment: '#f4e4bc',
+                        parchmentDark: '#d4a373'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .font-pixel { font-family: 'Press Start 2P', monospace; }
+        .font-terminal { font-family: 'VT323', monospace; }
+        .gold-glow { text-shadow: 0 0 6px rgba(247, 218, 32, 0.6); }
+        .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+        
+        /* Floating and Rotating Animation for Artifacts */
+        @keyframes float-rotate {
+            0%, 100% { transform: translateY(0) rotate(-4deg); }
+            50% { transform: translateY(-12px) rotate(4deg); }
+        }
+        .artifact-anim {
+            animation: float-rotate 3.5s ease-in-out infinite;
+        }
+
+        /* Wooden Shelf Base */
+        .shelf-wood {
+            background-color: #6d4c41; /* Dark wood */
+            border-bottom: 12px solid #3e2723; /* Shelf lip depth */
+            border-top: 2px solid #8d6e63; /* Shelf highlight */
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        }
+
+        /* Bottom Scroll Panel Shadow */
+        .bottom-scroll-shadow {
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body class="bg-medDarkBg text-slate-200 font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6 overflow-hidden">
+
+    <div class="max-w-5xl mx-auto border-4 border-medSage bg-medSlate rounded-3xl p-4 md:p-8 shadow-2xl relative min-h-[85vh]">
+
+        <!-- HEADER -->
+        <header class="border-b-2 border-medSage/40 pb-4 mb-16 flex justify-between items-center flex-wrap gap-4">
+            <div>
+                <a href="index.html" class="font-pixel text-xs text-medSage hover:text-medGold mb-2 inline-block">← Return to Dashboard</a>
+                <h1 class="font-pixel text-sm md:text-base text-medGold gold-glow">ARTIFACT INVENTORY</h1>
+                <p class="text-xs text-slate-300 font-mono">Inspect secured relics to reveal campaign data.</p>
+            </div>
+            <a href="map.html" class="px-3 py-2 bg-medDarkBg border border-medAmber text-medAmber font-pixel text-xs rounded-xl hover:bg-medAmber hover:text-medDarkBg transition-colors flex items-center gap-2 shadow-md">
+                <img src="assets/ui/WoodTable.png" class="w-4 h-4 pixelated"> Overworld Map
+            </a>
+        </header>
+
+        <!-- INVENTORY SHELVES CONTAINER -->
+        <div class="w-full max-w-4xl mx-auto space-y-32 mt-12 pb-24">
+            
+            <!-- SHELF 1: Advanced Relics -->
+            <div class="w-full h-4 shelf-wood relative rounded-sm">
+                <!-- Artifacts Resting on Shelf -->
+                <div class="absolute bottom-4 w-full flex justify-around items-end px-4 md:px-12">
+                    
+                    <button onclick="inspectArtifact('twinspect')" class="group relative focus:outline-none flex flex-col items-center">
+                        <img src="assets/icons/Icon_01.png" class="w-16 h-16 md:w-20 md:h-20 pixelated artifact-anim drop-shadow-xl group-hover:scale-125 transition-transform" style="animation-delay: 0s;">
+                        <span class="absolute -bottom-10 font-pixel text-[8px] md:text-[10px] text-medGold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity bg-medDarkBg/80 px-2 py-1 rounded border border-medGold">The TWINspect Sentinel</span>
+                    </button>
+
+                    <button onclick="inspectArtifact('codex')" class="group relative focus:outline-none flex flex-col items-center">
+                        <img src="assets/ui/SpecialPaper.png" class="w-16 h-16 md:w-20 md:h-20 pixelated artifact-anim drop-shadow-xl group-hover:scale-125 transition-transform" style="animation-delay: 0.5s;">
+                        <span class="absolute -bottom-10 font-pixel text-[8px] md:text-[10px] text-medGold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity bg-medDarkBg/80 px-2 py-1 rounded border border-medGold">The Commuter's Codex</span>
+                    </button>
+
+                    <button onclick="inspectArtifact('crystal')" class="group relative focus:outline-none flex flex-col items-center">
+                        <img src="assets/icons/Icon_11.png" class="w-16 h-16 md:w-20 md:h-20 pixelated artifact-anim drop-shadow-[0_0_20px_rgba(88,173,139,0.6)] group-hover:scale-125 transition-transform" style="animation-delay: 1s;">
+                        <span class="absolute -bottom-10 font-pixel text-[8px] md:text-[10px] text-medGold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity bg-medDarkBg/80 px-2 py-1 rounded border border-medGold">The Symphonic Crystal</span>
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- SHELF 2: Tooling & Guild Relics -->
+            <div class="w-full h-4 shelf-wood relative rounded-sm">
+                <!-- Artifacts Resting on Shelf -->
+                <div class="absolute bottom-4 w-full flex justify-around items-end px-4 md:px-12">
+                    
+                    <button onclick="inspectArtifact('apparatus')" class="group relative focus:outline-none flex flex-col items-center">
+                        <img src="assets/icons/Tool_01.png" class="w-14 h-14 md:w-16 md:h-16 pixelated artifact-anim drop-shadow-xl group-hover:scale-125 transition-transform" style="animation-delay: 0.2s;">
+                        <span class="absolute -bottom-10 font-pixel text-[8px] md:text-[10px] text-medGold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity bg-medDarkBg/80 px-2 py-1 rounded border border-medGold">The Obsidian Apparatus</span>
+                    </button>
+
+                    <button onclick="inspectArtifact('hammer')" class="group relative focus:outline-none flex flex-col items-center">
+                        <img src="assets/icons/Tool_03.png" class="w-14 h-14 md:w-16 md:h-16 pixelated artifact-anim drop-shadow-xl group-hover:scale-125 transition-transform" style="animation-delay: 0.7s;">
+                        <span class="absolute -bottom-10 font-pixel text-[8px] md:text-[10px] text-medGold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity bg-medDarkBg/80 px-2 py-1 rounded border border-medGold">The Kaizen Hammer</span>
+                    </button>
+
+                    <button onclick="inspectArtifact('compass')" class="group relative focus:outline-none flex flex-col items-center">
+                        <img src="assets/icons/Icon_08.png" class="w-14 h-14 md:w-16 md:h-16 pixelated artifact-anim drop-shadow-xl group-hover:scale-125 transition-transform" style="animation-delay: 1.2s;">
+                        <span class="absolute -bottom-10 font-pixel text-[8px] md:text-[10px] text-medGold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity bg-medDarkBg/80 px-2 py-1 rounded border border-medGold">The Iberian Compass</span>
+                    </button>
+
+                    <button onclick="inspectArtifact('lantern')" class="group relative focus:outline-none flex flex-col items-center">
+                        <img src="assets/icons/Icon_12.png" class="w-14 h-14 md:w-16 md:h-16 pixelated artifact-anim drop-shadow-[0_0_15px_rgba(247,218,32,0.5)] group-hover:scale-125 transition-transform" style="animation-delay: 0.4s;">
+                        <span class="absolute -bottom-10 font-pixel text-[8px] md:text-[10px] text-medGold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity bg-medDarkBg/80 px-2 py-1 rounded border border-medGold">The Mentor's Lantern</span>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SLIDE-UP BOTTOM DOSSIER -->
+        <!-- Hidden below the screen initially using translate-y-full -->
+        <div id="artifact-panel" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[95%] md:w-[70%] max-w-3xl bg-parchment border-t-[12px] border-x-[12px] border-parchmentDark rounded-t-3xl bottom-scroll-shadow z-50 transform translate-y-full transition-transform duration-500 max-h-[50vh] overflow-y-auto">
+            <div class="relative p-6 md:p-8 text-[#403A5C]">
+                <!-- Close Button -->
+                <button onclick="closeArtifact()" class="absolute top-4 right-4 w-8 h-8 rounded-full border-2 border-[#B33254] text-[#B33254] hover:bg-[#B33254] hover:text-parchment font-pixel text-xs transition-colors flex items-center justify-center shadow-sm">
+                    X
+                </button>
+                
+                <!-- Inner Scroll Content -->
+                <div id="artifact-content" class="mt-4 font-terminal text-lg leading-snug">
+                    <!-- Content populated via JS -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const artifacts = {
+            twinspect: `
+                <div class="flex items-center gap-4 border-b-2 border-parchmentDark pb-4 mb-4">
+                    <img src="assets/icons/Icon_01.png" class="w-12 h-12 pixelated">
+                    <div>
+                        <span class="font-pixel text-[10px] text-[#E48F15] block mb-1">LEGENDARY ARTIFACT</span>
+                        <h2 class="font-pixel text-sm text-[#403A5C]">The TWINspect Sentinel</h2>
+                    </div>
+                </div>
+                <p class="mb-3"><strong>Origin:</strong> NASA Gateway to Blue Skies / The Academy</p>
+                <p class="mb-4">An autonomous drone and digital twin framework forged to eliminate high-elevation fall hazards for technicians. By automating commercial aircraft inspections, this system significantly reduces the risk of mid-flight structural failures.</p>
+                <p class="text-sm font-bold text-[#58AD8B]">+500 Flight Safety | +300 Engineering Rigor</p>
+            `,
+            codex: `
+                <div class="flex items-center gap-4 border-b-2 border-parchmentDark pb-4 mb-4">
+                    <img src="assets/ui/SpecialPaper.png" class="w-12 h-12 pixelated">
+                    <div>
+                        <span class="font-pixel text-[10px] text-[#E48F15] block mb-1">EPIC SCROLL</span>
+                        <h2 class="font-pixel text-sm text-[#403A5C]">The Commuter's Codex</h2>
+                    </div>
+                </div>
+                <p class="mb-3"><strong>Origin:</strong> DFW Airport Consult</p>
+                <p class="mb-4">A synthesized research scroll containing raw analytical data of workforce travel patterns. Used to deploy clean transit infrastructure strategies, actively lowering carbon emissions and alleviating employee gridlock.</p>
+                <p class="text-sm font-bold text-[#58AD8B]">+350 Clean Transit | +200 Survey Analytics</p>
+            `,
+            crystal: `
+                <div class="flex items-center gap-4 border-b-2 border-parchmentDark pb-4 mb-4">
+                    <img src="assets/icons/Icon_11.png" class="w-12 h-12 pixelated">
+                    <div>
+                        <span class="font-pixel text-[10px] text-[#58AD8B] block mb-1">ARCANE ENGINE</span>
+                        <h2 class="font-pixel text-sm text-[#403A5C]">The Symphonic Crystal</h2>
+                    </div>
+                </div>
+                <p class="mb-3"><strong>Origin:</strong> Technologic Dimension</p>
+                <p class="mb-4">A full-stack digital signal processing (DSP) engine built using Python and Flask. This crystal absorbs raw atmospheric and orchestral audio math and transmutes frequency arrays into real-time geometric visual art.</p>
+                <p class="text-sm font-bold text-[#58AD8B]">+400 Audio Math | +200 Full-Stack Web Weaving</p>
+            `,
+            apparatus: `
+                <div class="flex items-center gap-4 border-b-2 border-parchmentDark pb-4 mb-4">
+                    <img src="assets/icons/Tool_01.png" class="w-12 h-12 pixelated">
+                    <div>
+                        <span class="font-pixel text-[10px] text-[#403A5C] block mb-1">RARE HARDWARE</span>
+                        <h2 class="font-pixel text-sm text-[#403A5C]">The Obsidian Apparatus</h2>
+                    </div>
+                </div>
+                <p class="mb-3"><strong>Origin:</strong> Hana Forge</p>
+                <p class="mb-4">Custom CAD-modeled and 3D-printed hardware testing gear. Forged to replace failing legacy hardware and streamline rigorous manufacturing tolerance operations.</p>
+                <p class="text-sm font-bold text-[#58AD8B]">+250 Hardware Precision | +100 Prototyping</p>
+            `,
+            hammer: `
+                <div class="flex items-center gap-4 border-b-2 border-parchmentDark pb-4 mb-4">
+                    <img src="assets/icons/Tool_03.png" class="w-12 h-12 pixelated">
+                    <div>
+                        <span class="font-pixel text-[10px] text-[#403A5C] block mb-1">CRAFTING TOOL</span>
+                        <h2 class="font-pixel text-sm text-[#403A5C]">The Kaizen Hammer</h2>
+                    </div>
+                </div>
+                <p class="mb-3"><strong>Origin:</strong> Hana Forge & Midwest Hangar</p>
+                <p class="mb-4">A symbolic tool representing the overhaul of inefficient systems. Used to smash outdated databases and forge a dynamic, searchable Excel quoting system while establishing 6S flow standards.</p>
+                <p class="text-sm font-bold text-[#58AD8B]">+300 Process Optimization | +150 Database Magic</p>
+            `,
+            compass: `
+                <div class="flex items-center gap-4 border-b-2 border-parchmentDark pb-4 mb-4">
+                    <img src="assets/icons/Icon_08.png" class="w-12 h-12 pixelated">
+                    <div>
+                        <span class="font-pixel text-[10px] text-[#E48F15] block mb-1">EXPEDITION RELIC</span>
+                        <h2 class="font-pixel text-sm text-[#403A5C]">The Iberian Compass</h2>
+                    </div>
+                </div>
+                <p class="mb-3"><strong>Origin:</strong> Porto Harbor</p>
+                <p class="mb-4">Secured during the European Innovation Academy expedition. Contains the foundational business strategy and financial modeling blueprints required to launch a tech startup across borders.</p>
+                <p class="text-sm font-bold text-[#58AD8B]">+200 Venture Strategy | +100 Global Teamwork</p>
+            `,
+            lantern: `
+                <div class="flex items-center gap-4 border-b-2 border-parchmentDark pb-4 mb-4">
+                    <img src="assets/icons/Icon_12.png" class="w-12 h-12 pixelated">
+                    <div>
+                        <span class="font-pixel text-[10px] text-[#E48F15] block mb-1">COMMUNITY BEACON</span>
+                        <h2 class="font-pixel text-sm text-[#403A5C]">The Mentor's Lantern</h2>
+                    </div>
+                </div>
+                <p class="mb-3"><strong>Origin:</strong> C&J Guild</p>
+                <p class="mb-4">A guiding light used to lead 7th-grade apprentices through the dark woods of quantitative STEM coursework. Powered by educational data analysis and career preparedness workshops.</p>
+                <p class="text-sm font-bold text-[#58AD8B]">+350 Youth Guidance | +150 Quantitative Mentoring</p>
+            `
+        };
+
+        function inspectArtifact(key) {
+            document.getElementById('artifact-content').innerHTML = artifacts[key];
+            // Slide the panel UP from the bottom
+            document.getElementById('artifact-panel').classList.remove('translate-y-full');
+            document.getElementById('artifact-panel').classList.add('translate-y-0');
+        }
+
+        function closeArtifact() {
+            // Slide the panel DOWN off the screen
+            document.getElementById('artifact-panel').classList.remove('translate-y-0');
+            document.getElementById('artifact-panel').classList.add('translate-y-full');
+        }
+    </script>
+</body>
+</html>
