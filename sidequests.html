@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Quests | Cosmonautia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { medTeal: '#24555A', medIce: '#B9D6E5', medPlum: '#4E3A53', medOlive: '#698F3D', medPistachio: '#D6E685', medRose: '#D06D9C', medCream: '#F5EDB9' } },
+                fontFamily: { medieval: ['"MedievalSharp"', 'cursive'] }
+            }
+        }
+    </script>
+    <style>body { font-family: 'MedievalSharp', cursive; }</style>
+</head>
+<body class="bg-medPlum text-medCream min-h-screen p-3 md:p-6 flex items-center justify-center">
+
+    <div class="max-w-md w-full border-4 border-medTeal bg-medTeal/40 rounded-3xl p-6 md:p-12 shadow-2xl text-center">
+        <h1 class="text-4xl text-medRose mb-6">Side Quests</h1>
+        
+        <p class="text-6xl text-medPistachio mb-8 animate-pulse">x</p>
+        
+        <a href="index.html" class="text-medIce hover:text-medCream border border-medIce px-4 py-2 rounded-lg transition-colors">Return to Dashboard</a>
+    </div>
+
+</body>
+</html>
