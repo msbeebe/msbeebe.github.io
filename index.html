@@ -11,15 +11,16 @@
             theme: {
                 extend: {
                     colors: {
-                        /* Magical Forest Palette */
-                        medTeal: '#24555A',
+                        /* Darkened Teal to almost Navy */
+                        medNavyTeal: '#0d1b2a', 
                         medIce: '#B9D6E5',
                         medPlum: '#4E3A53',
                         medOlive: '#698F3D',
                         medPistachio: '#D6E685',
                         medRose: '#D06D9C',
                         medCream: '#F5EDB9',
-                        medWood: '#3e2723'
+                        medWood: '#3e2723',
+                        medSlate: '#868884'
                     },
                     fontFamily: { medieval: ['"MedievalSharp"', 'cursive'] }
                 }
@@ -29,33 +30,62 @@
     <style>
         body { 
             font-family: 'MedievalSharp', cursive; 
-            background-color: #4E3A53; /* Deep Plum Background */
-            overflow-x: hidden;
+            margin: 0;
+            overflow: hidden; /* Prevents scrolling, locking it as a single scene */
+            background-color: #0d1b2a;
         }
 
-        /* Neon / Magical Glows */
-        .glow-pistachio { text-shadow: 0 0 10px rgba(214, 230, 133, 0.8), 0 0 20px rgba(214, 230, 133, 0.4); }
-        .glow-ice { text-shadow: 0 0 10px rgba(185, 214, 229, 0.8); }
+        /* Magical Glows */
+        .glow-pistachio { text-shadow: 0 0 10px rgba(214, 230, 133, 0.8); }
         .glow-rose { text-shadow: 0 0 10px rgba(208, 109, 156, 0.8); box-shadow: 0 0 15px rgba(208, 109, 156, 0.6); }
-        .box-glow-teal { box-shadow: 0 0 25px rgba(36, 85, 90, 0.9), inset 0 0 20px rgba(36, 85, 90, 0.5); }
+        .glow-ice { text-shadow: 0 0 10px rgba(185, 214, 229, 0.8); }
         
         .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
         
-        /* Draggable Carousel Setup */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Physical Wood Tile Effects */
-        .wood-tile {
-            background-color: #24555A; /* Teal base */
-            border: 2px solid #D6E685; /* Pistachio border */
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 6px 8px rgba(0,0,0,0.5);
-            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+        /* 3D Room CSS Setup */
+        .room-wall {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(to bottom, #0d1b2a, #1a2f3a);
+            border-bottom: 6px solid #15242b;
+            z-index: 1;
         }
-        .wood-tile:hover {
-            filter: brightness(1.2);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 15px rgba(214, 230, 133, 0.4);
+        .room-floor {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 30%;
+            background: linear-gradient(to bottom, #3e2723, #251613);
+            z-index: 1;
+            /* Simple CSS perspective to look like a floor */
+            box-shadow: inset 0 20px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Interactive Room Objects */
+        .room-object {
+            position: absolute;
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
+            display: flex;
+            flex-col;
+            align-items: center;
+        }
+        .room-object:hover {
+            transform: scale(1.15) translateY(-5px);
+            filter: drop-shadow(0 0 15px rgba(214,230,133,0.6));
+        }
+        .room-object span {
+            opacity: 0;
+            transition: opacity 0.3s;
+            margin-top: 8px;
+            background-color: rgba(13, 27, 42, 0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #D6E685;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .room-object:hover span {
+            opacity: 1;
         }
 
         /* Pouch Pulse Animation */
@@ -67,124 +97,138 @@
         .animate-pulse-gold { animation: goldPulse 0.5s ease-out; }
     </style>
 </head>
-<body class="text-medCream min-h-screen p-3 md:p-8" onload="initDashboard()">
+<body class="text-medCream" onload="initDashboard()">
 
     <!-- PERSISTENT TOP LEFT NAME -->
-    <div class="fixed top-4 left-4 z-50 text-2xl text-medPistachio glow-pistachio pointer-events-none">
+    <div class="fixed top-6 left-6 z-50 text-3xl text-medCream glow-ice pointer-events-none tracking-widest">
         Madeline Beebe
     </div>
 
     <!-- GAMIFICATION: Coin Pouch -->
-    <div id="pouch" class="fixed top-4 right-4 bg-medWood border-2 border-medPistachio text-medPistachio px-4 py-2 rounded-xl z-50 shadow-lg flex items-center gap-2 text-2xl cursor-default">
+    <div id="pouch" class="fixed top-6 right-6 bg-medWood border-2 border-medPistachio text-medPistachio px-4 py-2 rounded-xl z-50 shadow-lg flex items-center gap-2 text-2xl cursor-default">
         <span>🪙</span> <span id="coin-count" class="glow-pistachio">0</span>
     </div>
 
-    <!-- MAIN GAME CONTAINER -->
-    <div class="max-w-5xl mx-auto mt-12 md:mt-8 border-4 border-medPistachio bg-medTeal rounded-3xl p-6 md:p-10 box-glow-teal relative">
+    <!-- 2D ISOMETRIC ROOM (THE STUDY) -->
+    <div class="w-full h-screen relative">
+        
+        <!-- Environment Architecture -->
+        <div class="room-wall"></div>
+        <div class="room-floor"></div>
 
-        <!-- HEADER / DIRECTIVE -->
-        <header class="border-b-2 border-medIce/40 pb-6 mb-8 text-center">
-            <div class="text-medPistachio glow-pistachio tracking-widest text-sm mb-4">● SYSTEM ONLINE</div>
-            <h1 class="text-4xl md:text-5xl text-medIce glow-ice mb-2 tracking-widest uppercase">Cosmonautia</h1>
-            <h2 class="text-2xl text-medCream tracking-wide mb-6">Quest for Realm Impact</h2>
+        <!-- ========================================== -->
+        <!-- FOCAL POINT: AVATAR & PERSONA BOX          -->
+        <!-- ========================================== -->
+        <div class="absolute left-1/2 bottom-[15%] -translate-x-1/2 z-30 flex flex-col items-center">
             
-            <div class="bg-medPlum/50 inline-block px-6 py-3 rounded-xl border border-medPistachio/50">
-                <span class="text-xl text-medPistachio glow-pistachio">Driving Directive: Leverage skills to become a Realm Force for Good.</span>
-            </div>
-        </header>
-
-        <!-- PERSONA SECTION -->
-        <section class="bg-[#1a282a] p-6 rounded-2xl border-2 border-medOlive shadow-inner mb-10 flex flex-col md:flex-row gap-8 items-center relative">
-            
-            <!-- Avatar with integrated Level Badge -->
-            <div class="relative w-32 h-32 flex-shrink-0">
-                <div class="w-full h-full bg-medPlum border-4 border-medIce rounded-full p-2 shadow-[0_0_20px_rgba(185,214,229,0.5)]">
-                    <img src="assets/avatars/Avatars_02.png" alt="Avatar" class="w-full h-full object-contain pixelated rounded-full">
-                </div>
-                <!-- Touching Level Badge -->
-                <div class="absolute -top-2 -right-2 w-10 h-10 bg-medRose text-medCream border-2 border-medCream rounded-full flex items-center justify-center text-xl font-bold glow-rose z-10">
-                    5
+            <!-- Persona Box (Floating Nameplate) -->
+            <div class="bg-medPlum/90 border-2 border-medPistachio p-4 rounded-xl shadow-2xl mb-8 w-80 text-center relative z-40 transform hover:scale-105 transition-transform cursor-default">
+                <h1 class="text-2xl text-medPistachio glow-pistachio mb-2">Magister Madeline Beebe</h1>
+                <div class="grid grid-cols-2 gap-2 text-sm text-medCream text-left px-2">
+                    <p><span class="text-medIce">Class:</span> Scholar</p>
+                    <p><span class="text-medIce">Rank:</span> Magister</p>
+                    <p class="col-span-2"><span class="text-medIce">Materia:</span> Cosmonautics & Analytics</p>
                 </div>
             </div>
 
-            <!-- Stats -->
-            <div class="flex-grow text-center md:text-left w-full">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-lg text-medCream bg-medTeal/40 p-4 rounded-xl border border-medIce/30">
-                    <p><span class="text-medPistachio block text-sm mb-1 tracking-wider glow-pistachio">CLASS</span> Cosmonautics Scholar</p>
-                    <p><span class="text-medPistachio block text-sm mb-1 tracking-wider glow-pistachio">CATEGORY</span> Alchemist</p>
-                    <p><span class="text-medPistachio block text-sm mb-1 tracking-wider glow-pistachio">LOCATION</span> The Academy</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- INTERACTIVE CAROUSEL: REALM NAVIGATION -->
-        <section class="mb-10">
-            <h3 class="text-2xl text-medIce glow-ice mb-4 text-center">Realm Navigation</h3>
-            
-            <!-- Draggable & Auto-Scrolling Container -->
-            <div id="carousel" class="flex overflow-x-auto hide-scrollbar gap-6 py-6 cursor-grab active:cursor-grabbing select-none w-full">
+            <!-- Giant Avatar -->
+            <div class="relative w-56 h-56 flex justify-center">
+                <!-- Drop your new avatar PNG here -->
+                <img src="assets/avatars/Main_Avatar.png" alt="Avatar" class="w-full h-full object-contain pixelated drop-shadow-[0_15px_15px_rgba(0,0,0,0.8)]">
                 
-                <!-- Tile 1 -->
-                <a href="academy.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
-                    <img src="assets/buildings/Castle.png" alt="Academy" class="w-12 h-12 pixelated pointer-events-none">
-                    <span class="text-lg pointer-events-none">The Academy</span>
-                </a>
-                
-                <!-- Tile 2 -->
-                <a href="campaign.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
-                    <img src="assets/ui/SpecialPaper.png" alt="Log" class="w-12 h-12 pixelated pointer-events-none">
-                    <span class="text-lg pointer-events-none">Campaign Log</span>
-                </a>
-
-                <!-- Tile 3 -->
-                <a href="skills.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
-                    <img src="assets/icons/Icon_01.png" alt="Skills" class="w-12 h-12 pixelated pointer-events-none">
-                    <span class="text-lg pointer-events-none">Skill Tree</span>
-                </a>
-
-                <!-- Tile 4 -->
-                <a href="inventory.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
-                    <img src="assets/icons/Icon_06.png" alt="Inventory" class="w-12 h-12 pixelated pointer-events-none">
-                    <span class="text-lg pointer-events-none">Inventory</span>
-                </a>
-
-                <!-- Tile 5 -->
-                <a href="sidequests.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
-                    <img src="assets/icons/Icon_08.png" alt="Quests" class="w-12 h-12 pixelated pointer-events-none">
-                    <span class="text-lg pointer-events-none">Side Quests</span>
-                </a>
-
-                <!-- Tile 6 -->
-                <a href="map.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
-                    <img src="assets/ui/WoodTable.png" alt="Map" class="w-12 h-12 pixelated pointer-events-none">
-                    <span class="text-lg pointer-events-none">Overworld Map</span>
-                </a>
-
+                <!-- Level Badge (Rounded Box touching head) -->
+                <div class="absolute -top-4 right-8 bg-medRose text-medCream border-2 border-medCream rounded-md px-3 py-1 text-xl font-bold glow-rose z-50">
+                    LVL 5
+                </div>
             </div>
-        </section>
 
-        <!-- FOOTER COMMAND -->
-        <footer class="pt-6 border-t-2 border-medIce/30 text-center">
-            <a href="mailto:msbeebe@outlook.com" class="text-xl text-medRose glow-rose hover:text-medCream transition-colors tracking-widest">
-                > PRESS START TO TRANSMIT MESSAGE 
-            </a>
-        </footer>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- THE ENVIRONMENT OBJECTS (NAVIGATION)       -->
+        <!-- ========================================== -->
+
+        <!-- Overworld Map (Pinned to left wall) -->
+        <a href="map.html" class="room-object flex-col" style="top: 25%; left: 15%;">
+            <img src="assets/ui/WoodTable.png" class="w-20 h-20 pixelated drop-shadow-xl">
+            <span class="text-medPistachio">Overworld Map</span>
+        </a>
+
+        <!-- The Academy (Banner hanging on wall) -->
+        <a href="academy.html" class="room-object flex-col" style="top: 15%; left: 35%;">
+            <img src="assets/buildings/Castle.png" class="w-24 h-24 pixelated drop-shadow-xl">
+            <span class="text-medPistachio">The Academy</span>
+        </a>
+
+        <!-- Campaign Log (Book on the floor right) -->
+        <a href="campaign.html" class="room-object flex-col" style="bottom: 20%; right: 28%;">
+            <img src="assets/ui/SpecialPaper.png" class="w-20 h-20 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+            <span class="text-medPistachio">Campaign Log</span>
+        </a>
+
+        <!-- Inventory (Chest on the floor left) -->
+        <a href="inventory.html" class="room-object flex-col" style="bottom: 12%; left: 22%;">
+            <img src="assets/icons/Icon_06.png" class="w-20 h-20 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+            <span class="text-medPistachio">Artifact Inventory</span>
+        </a>
+
+        <!-- Skill Tree (Glowing Crystal/Bookshelf upper right) -->
+        <a href="skills.html" class="room-object flex-col" style="top: 30%; right: 18%;">
+            <img src="assets/icons/Icon_11.png" class="w-16 h-16 pixelated drop-shadow-xl animate-pulse">
+            <span class="text-medPistachio">Skill Tree</span>
+        </a>
+
+        <!-- Side Quests (Notice Board middle right) -->
+        <a href="sidequests.html" class="room-object flex-col" style="top: 55%; right: 10%;">
+            <img src="assets/icons/Icon_08.png" class="w-20 h-20 pixelated drop-shadow-xl">
+            <span class="text-medPistachio">Side Quests</span>
+        </a>
+
+        <!-- ========================================== -->
+        <!-- THE DRIVING DIRECTIVE                      -->
+        <!-- ========================================== -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 text-center w-full pointer-events-none">
+            <p class="text-medPistachio text-xl tracking-widest glow-pistachio">
+                driving directive: leverage skills to become a realm force for good.
+            </p>
+        </div>
 
         <!-- GAMIFICATION COIN -->
-        <button id="hidden-coin" onclick="collectCoin(event, this)" class="absolute bottom-6 left-6 text-4xl opacity-50 hover:opacity-100 hover:scale-110 transition-all drop-shadow-[0_0_10px_rgba(214,230,133,0.8)]" title="A hidden coin!">
+        <button id="hidden-coin" onclick="collectCoin(event, this)" class="absolute text-5xl opacity-0 hover:opacity-100 transition-all z-[100]" title="A hidden coin!">
             🪙
         </button>
 
     </div>
 
     <script>
-        // --- 1. Coin Gamification Logic ---
+        // --- 1. Coin Gamification & Random Spawn Logic ---
         function initDashboard() {
+            // Load coins from storage
             let coins = localStorage.getItem('agencia_coins') || 0;
             document.getElementById('coin-count').innerText = coins;
-            setupCarousel();
+
+            // Define possible hidden locations for the coin
+            const spawnPoints = [
+                { top: '15%', left: '8%' },
+                { top: '75%', right: '15%' },
+                { top: '40%', left: '80%' },
+                { bottom: '15%', left: '10%' },
+                { top: '25%', left: '60%' },
+                { top: '60%', left: '25%' }
+            ];
+
+            // Pick a random location and apply it to the coin
+            const coin = document.getElementById('hidden-coin');
+            const randomSpawn = spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
+            
+            // Apply the coordinates
+            if (randomSpawn.top) coin.style.top = randomSpawn.top;
+            if (randomSpawn.bottom) coin.style.bottom = randomSpawn.bottom;
+            if (randomSpawn.left) coin.style.left = randomSpawn.left;
+            if (randomSpawn.right) coin.style.right = randomSpawn.right;
         }
 
+        // --- 2. Coin Flight Animation ---
         function collectCoin(event, element) {
             const pouch = document.getElementById('pouch');
             
@@ -194,7 +238,7 @@
             ghostCoin.style.position = 'fixed';
             ghostCoin.style.left = event.clientX + 'px';
             ghostCoin.style.top = event.clientY + 'px';
-            ghostCoin.style.fontSize = '2.25rem';
+            ghostCoin.style.fontSize = '3rem';
             ghostCoin.style.zIndex = '9999';
             ghostCoin.style.pointerEvents = 'none';
             // Easing gives it a nice physical arc feel
@@ -202,13 +246,11 @@
             document.body.appendChild(ghostCoin);
             
             // Hide the original coin immediately
-            element.style.opacity = '0';
-            element.style.pointerEvents = 'none';
+            element.style.display = 'none';
 
             // Trigger the flight to the pouch
             setTimeout(() => {
                 const pouchRect = pouch.getBoundingClientRect();
-                // Aim for the center of the pouch
                 ghostCoin.style.left = (pouchRect.left + 20) + 'px';
                 ghostCoin.style.top = (pouchRect.top + 10) + 'px';
                 ghostCoin.style.transform = 'scale(0.5)';
@@ -228,61 +270,6 @@
                 pouch.classList.add('animate-pulse-gold');
                 setTimeout(() => pouch.classList.remove('animate-pulse-gold'), 500);
             }, 720);
-        }
-
-        // --- 2. Interactive Carousel Logic ---
-        function setupCarousel() {
-            const carousel = document.getElementById('carousel');
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            let isHovered = false;
-            let scrollDirection = 1; // 1 for right, -1 for left
-
-            // Drag to Scroll Logic
-            carousel.addEventListener('mousedown', (e) => {
-                isDown = true;
-                carousel.classList.add('cursor-grabbing');
-                startX = e.pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
-            });
-            
-            carousel.addEventListener('mouseleave', () => { 
-                isDown = false; 
-                isHovered = false; 
-                carousel.classList.remove('cursor-grabbing'); 
-            });
-            
-            carousel.addEventListener('mouseup', () => { 
-                isDown = false; 
-                carousel.classList.remove('cursor-grabbing'); 
-            });
-            
-            carousel.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - carousel.offsetLeft;
-                const walk = (x - startX) * 2; // Scroll speed multiplier
-                carousel.scrollLeft = scrollLeft - walk;
-            });
-
-            // Auto-Cycle Logic
-            carousel.addEventListener('mouseenter', () => isHovered = true);
-            carousel.addEventListener('touchstart', () => isHovered = true);
-            carousel.addEventListener('touchend', () => isHovered = false);
-
-            setInterval(() => {
-                if(!isHovered && !isDown) {
-                    carousel.scrollLeft += scrollDirection;
-                    
-                    // Bounce back and forth when hitting the ends
-                    if(carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 1)) {
-                        scrollDirection = -1;
-                    } else if (carousel.scrollLeft <= 0) {
-                        scrollDirection = 1;
-                    }
-                }
-            }, 30);
         }
     </script>
 </body>
