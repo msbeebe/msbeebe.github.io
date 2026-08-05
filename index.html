@@ -27,6 +27,7 @@
         .font-terminal { font-family: 'VT323', monospace; }
         .gold-glow { text-shadow: 0 0 6px rgba(247, 218, 32, 0.6); }
         .sage-glow { text-shadow: 0 0 6px rgba(88, 173, 139, 0.5); }
+        .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
     </style>
 </head>
 <body class="bg-medDarkBg text-slate-200 font-terminal text-lg md:text-xl min-h-screen p-3 md:p-6">
@@ -44,27 +45,10 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
                 
-                <!-- PERSONA TILE WITH BLONDE ALCHEMIST PIXEL AVATAR -->
+                <!-- PERSONA TILE WITH PIXEL AVATAR -->
                 <div class="lg:col-span-2 flex items-center gap-4 bg-medDarkBg/80 p-4 rounded-2xl border-2 border-medSage/50">
-                    <!-- SNES Pixel Blonde Alchemist Icon -->
                     <div class="w-20 h-20 bg-medSlate border-2 border-medGold rounded-xl p-1 flex-shrink-0 flex items-center justify-center relative shadow-md">
-                        <svg viewBox="0 0 16 16" class="w-full h-full shape-rendering-crisp" style="image-rendering: pixelated;">
-                            <!-- Hood / Alchemist Hat -->
-                            <rect x="3" y="1" width="10" height="4" fill="#B33254" />
-                            <rect x="2" y="3" width="12" height="2" fill="#E48F15" />
-                            <!-- Blonde Hair -->
-                            <rect x="2" y="5" width="12" height="4" fill="#F7DA20" />
-                            <rect x="1" y="8" width="3" height="5" fill="#F7DA20" />
-                            <rect x="12" y="8" width="3" height="5" fill="#F7DA20" />
-                            <!-- Face -->
-                            <rect x="4" y="6" width="8" height="5" fill="#ffdbac" />
-                            <!-- Eyes -->
-                            <rect x="5" y="7" width="2" height="2" fill="#403A5C" />
-                            <rect x="9" y="7" width="2" height="2" fill="#403A5C" />
-                            <!-- Alchemist Cloak / Robe -->
-                            <rect x="3" y="11" width="10" height="5" fill="#58AD8B" />
-                            <rect x="7" y="11" width="2" height="5" fill="#F7DA20" />
-                        </svg>
+                        <img src="assets/avatars/Avatars_02.png" alt="Madeline Beebe Avatar" class="w-full h-full object-contain pixelated">
                         <span class="absolute -bottom-2 -right-2 bg-medGold text-medDarkBg font-pixel text-[8px] px-1 rounded border border-medDarkBg">LVL 5</span>
                     </div>
 
@@ -73,7 +57,7 @@
                         <p class="text-sm text-slate-300 font-mono">Cosmonautics and Analytics Scholar</p>
                         <div class="mt-2 text-xs text-medSage font-mono flex flex-wrap gap-x-4 gap-y-1">
                             <span>RANK: Level 5 Magister</span>
-                            <span>LOCATION: The Acadmey (Tuscaloosa, AL)</span>
+                            <span>LOCATION: The Academy (Tuscaloosa, AL)</span>
                         </div>
                     </div>
                 </div>
@@ -96,9 +80,8 @@
             
             <!-- THE ACADEMY CASTLE TILE -->
             <div class="md:col-span-2 border-2 border-medSage bg-medDarkBg/90 p-5 rounded-2xl flex gap-4 items-start shadow-md">
-                <div class="w-14 h-14 bg-medSlate border-2 border-medSage rounded-xl flex items-center justify-center flex-shrink-0 text-2xl p-2">
-                    <!-- Castle Icon -->
-                    🏰
+                <div class="w-16 h-16 bg-medSlate border-2 border-medSage rounded-xl flex items-center justify-center flex-shrink-0 p-2">
+                    <img src="assets/buildings/Castle.png" alt="The Academy Castle" class="w-full h-full object-contain pixelated">
                 </div>
                 <div>
                     <div class="flex items-center justify-between mb-1">
@@ -121,25 +104,37 @@
             <div class="flex flex-col gap-3 justify-between">
                 <!-- RESUME TILE -->
                 <a href="Madeline_Beebe_Resume.pdf" target="_blank" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medGold hover:border-medAmber rounded-xl text-medGold hover:text-medAmber transition-colors font-pixel text-xs shadow-md group">
-                    <span>Resume Scroll</span>
+                    <span class="flex items-center gap-2">
+                        <img src="assets/ui/RegularPaper.png" alt="Scroll" class="w-5 h-5 object-contain pixelated">
+                        Resume Scroll
+                    </span>
                     <span class="group-hover:translate-x-1 transition-transform">↗</span>
                 </a>
 
                 <!-- LINKEDIN TILE -->
                 <a href="https://www.linkedin.com/in/madeline-beebel/" target="_blank" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medSage hover:border-medGold rounded-xl text-medSage hover:text-medGold transition-colors font-pixel text-xs shadow-md group">
-                    <span>LinkedIn Profile</span>
+                    <span class="flex items-center gap-2">
+                        <img src="assets/ui/Ribbon_Blue.png" alt="Guild Seal" class="w-5 h-5 object-contain pixelated">
+                        LinkedIn Profile
+                    </span>
                     <span class="group-hover:translate-x-1 transition-transform">↗</span>
+                </a>
+
+                <!-- OVERWORLD MAP TILE -->
+                <a href="map.html" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medAmber hover:border-medGold rounded-xl text-medAmber hover:text-medGold transition-colors font-pixel text-xs shadow-md group">
+                    <span class="flex items-center gap-2">
+                        <img src="assets/ui/WoodTable.png" alt="Map Table" class="w-5 h-5 object-contain pixelated">
+                        Overworld Map
+                    </span>
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
 
                 <!-- FULL CAMPAIGN LOG LINK TILE -->
                 <a href="campaign.html" class="flex items-center justify-between p-3 bg-medCrimson/80 border-2 border-medCrimson hover:bg-medCrimson rounded-xl text-white transition-colors font-pixel text-xs shadow-md group">
-                    <span>Full Campaign Log</span>
-                    <span class="group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-                <!-- OVERWORLD MAP TEASER TILE -->
-                <a href="map.html" class="flex items-center justify-between p-3 bg-medDarkBg border-2 border-medAmber hover:border-medGold rounded-xl text-medAmber hover:text-medGold transition-colors font-pixel text-xs shadow-md group">
                     <span class="flex items-center gap-2">
-                    <span class="animate-pulse">🗺️</span> Overworld Map</span>
+                        <img src="assets/ui/SpecialPaper.png" alt="Book" class="w-5 h-5 object-contain pixelated">
+                        Full Campaign Log
+                    </span>
                     <span class="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
             </div>
@@ -204,7 +199,7 @@
             </div>
         </section>
 
-        <!-- SKILLS LOG MATRIX (WITH SKILL ICONS & MISSION REFERENCES) -->
+        <!-- SKILLS LOG MATRIX (WITH PIXEL ICONS) -->
         <section class="mb-8 border-t border-medSage/30 pt-6">
             <h2 class="font-pixel text-xs md:text-sm text-medSage mb-4 sage-glow">
              SKILLS LOG
@@ -212,52 +207,68 @@
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs">
                 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🚀 Cosmonautics</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – IX</p>
-                    
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_01.png" alt="Cosmonautics" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Cosmonautics</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – IX</p>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">💻 Technology</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – XI</p>
-                    
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_06.png" alt="Technology" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Technology</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – XI</p>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">📜 Strategy</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – XI</p>
-                    
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_08.png" alt="Strategy" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Strategy</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – XI</p>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🪙 Coin</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – VIII</p>
-                   
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Gold_Resource.png" alt="Coin" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Coin</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – VIII</p>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">⚔️ Troop Mgmt</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – VIII</p>
-                    
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_03.png" alt="Troop Mgmt" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Troop Mgmt</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – VIII</p>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🤝 Teamwork</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – X</p>
-                    
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_05.png" alt="Teamwork" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Teamwork</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – X</p>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🏗️ Building</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – V</p>
-                    
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Tool_01.png" alt="Building" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Building</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – V</p>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl">
-                    <div class="font-pixel text-medGold mb-1 flex items-center gap-1">🧑‍🏫 Apprenticemaking</div>
-                    <p class="text-[15px] text-slate-300 mb-1">Ranks I – II</p>
-                    
+                <div class="p-3 bg-medDarkBg border border-medSage/40 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_12.png" alt="Apprenticemaking" class="w-8 h-8 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="font-pixel text-medGold mb-0.5 text-[11px]">Apprenticemaking</div>
+                        <p class="text-[13px] text-slate-300">Ranks I – II</p>
+                    </div>
                 </div>
 
             </div>
