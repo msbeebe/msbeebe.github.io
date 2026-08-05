@@ -29,6 +29,7 @@
         .sage-glow { text-shadow: 0 0 6px rgba(88, 173, 139, 0.5); }
         .node-pulse { animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         .star-twinkle { animation: twinkle 1.8s ease-in-out infinite alternate; }
+        .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.04); }
@@ -90,18 +91,18 @@
 
                 <!-- TOP LEFT: THE ACADEMY CASTLE (YELLOW TILE) -->
                 <div class="absolute left-[8%] md:left-[12%] top-[12%] w-[220px] md:w-[260px]">
-                    <button onclick="showDossier('academy')" class="node-pulse bg-medDarkBg border-4 border-medGold text-medGold p-5 rounded-3xl w-full text-center group transition-transform shadow-xl shadow-medGold/20 hover:border-amber-300">
-                        <div class="icon-slot h-8 mb-1 flex items-center justify-center"></div>
+                    <button onclick="showDossier('academy')" class="node-pulse bg-medDarkBg border-4 border-medGold text-medGold p-4 rounded-3xl w-full text-center group transition-transform shadow-xl shadow-medGold/20 hover:border-amber-300 flex flex-col items-center">
+                        <img src="assets/buildings/Castle.png" alt="Castle" class="w-12 h-12 object-contain pixelated mb-2">
                         <span class="font-pixel text-xs md:text-sm block text-medGold gold-glow mb-1">The Academy Castle</span>
                         <span class="text-xs text-medSage font-mono block">Tuscaloosa, AL (Central Hub)</span>
-                        <span class="text-[11px] text-slate-400 font-mono mt-2 block">Levels 1 - 5</span>
+                        <span class="text-[11px] text-slate-400 font-mono mt-1 block">Level 1 - 5 Operations</span>
                     </button>
                 </div>
 
                 <!-- TOP CENTER: HANA FORGE (TEAL TILE) -->
                 <div class="absolute left-[44%] md:left-[48%] top-[10%] w-[160px] md:w-[190px]">
-                    <button onclick="showDossier('hana')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-4 rounded-2xl w-full text-center group transition-transform shadow-md">
-                        <div class="icon-slot h-6 mb-1 flex items-center justify-center"></div>
+                    <button onclick="showDossier('hana')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-3 rounded-2xl w-full text-center group transition-transform shadow-md flex flex-col items-center">
+                        <img src="assets/buildings/Archery.png" alt="Hana Forge" class="w-10 h-10 object-contain pixelated mb-1">
                         <span class="font-pixel text-xs block text-medSage sage-glow">Hana Forge</span>
                         <span class="text-xs text-slate-400 font-mono">Cleveland, OH</span>
                     </button>
@@ -109,8 +110,8 @@
 
                 <!-- TOP RIGHT: PORTO HARBOR (TEAL TILE) -->
                 <div class="absolute left-[72%] md:left-[74%] top-[8%] w-[160px] md:w-[190px]">
-                    <button onclick="showDossier('porto')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-4 rounded-2xl w-full text-center group transition-transform shadow-md">
-                        <div class="icon-slot h-6 mb-1 flex items-center justify-center"></div>
+                    <button onclick="showDossier('porto')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-3 rounded-2xl w-full text-center group transition-transform shadow-md flex flex-col items-center">
+                        <img src="assets/buildings/House3.png" alt="Porto Harbor" class="w-10 h-10 object-contain pixelated mb-1">
                         <span class="font-pixel text-xs block text-medSage sage-glow">Porto Harbor</span>
                         <span class="text-xs text-slate-400 font-mono">Porto, Portugal</span>
                     </button>
@@ -118,8 +119,8 @@
 
                 <!-- MIDDLE RIGHT: MIDWEST HANGAR (TEAL TILE - BENEATH HANA) -->
                 <div class="absolute left-[56%] md:left-[58%] top-[40%] w-[170px] md:w-[200px]">
-                    <button onclick="showDossier('midwest')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-4 rounded-2xl w-full text-center group transition-transform shadow-md">
-                        <div class="icon-slot h-6 mb-1 flex items-center justify-center"></div>
+                    <button onclick="showDossier('midwest')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-3 rounded-2xl w-full text-center group transition-transform shadow-md flex flex-col items-center">
+                        <img src="assets/buildings/Barracks.png" alt="Midwest Hangar" class="w-10 h-10 object-contain pixelated mb-1">
                         <span class="font-pixel text-xs block text-medSage sage-glow">Midwest Hangar</span>
                         <span class="text-xs text-slate-400 font-mono">Indianapolis, IN</span>
                     </button>
@@ -127,8 +128,8 @@
 
                 <!-- MIDDLE LEFT: C&J GUILD (TEAL TILE - BENEATH ACADEMY) -->
                 <div class="absolute left-[14%] md:left-[16%] top-[52%] w-[170px] md:w-[200px]">
-                    <button onclick="showDossier('cj')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-4 rounded-2xl w-full text-center group transition-transform shadow-md">
-                        <div class="icon-slot h-6 mb-1 flex items-center justify-center"></div>
+                    <button onclick="showDossier('cj')" class="node-pulse bg-medDarkBg border-2 border-medSage hover:border-medGold text-medSage p-3 rounded-2xl w-full text-center group transition-transform shadow-md flex flex-col items-center">
+                        <img src="assets/buildings/Monastery.png" alt="C&J Guild" class="w-10 h-10 object-contain pixelated mb-1">
                         <span class="font-pixel text-xs block text-medSage sage-glow">C&J Guild</span>
                         <span class="text-xs text-slate-400 font-mono">Tuscaloosa, AL</span>
                     </button>
@@ -136,8 +137,8 @@
 
                 <!-- BOTTOM LEFT: AGENCIA CITADEL (PINK TILE) -->
                 <div class="absolute left-[6%] md:left-[8%] top-[78%] w-[180px] md:w-[210px]">
-                    <button onclick="showDossier('agencia')" class="node-pulse bg-medDarkBg border-2 border-medCrimson hover:border-medGold text-medCrimson p-4 rounded-2xl w-full text-center group transition-transform shadow-md">
-                        <div class="icon-slot h-6 mb-1 flex items-center justify-center"></div>
+                    <button onclick="showDossier('agencia')" class="node-pulse bg-medDarkBg border-2 border-medCrimson hover:border-medGold text-medCrimson p-3 rounded-2xl w-full text-center group transition-transform shadow-md flex flex-col items-center">
+                        <img src="assets/buildings/Tower.png" alt="Agencia Citadel" class="w-10 h-10 object-contain pixelated mb-1">
                         <span class="font-pixel text-xs block text-medCrimson">Agencia Citadel</span>
                         <span class="text-xs text-slate-400 font-mono">Unlocks May 2027</span>
                     </button>
@@ -146,9 +147,9 @@
                 <!-- BOTTOM RIGHT: TECHNOLOGIC DIMENSION (UNIQUE CIRCULAR TEAL TILE) -->
                 <div class="absolute left-[68%] md:left-[72%] top-[65%]">
                     <button onclick="showDossier('tech')" class="node-pulse bg-medDarkBg border-4 border-medSage hover:border-medGold text-medSage rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center text-center p-3 group transition-transform shadow-xl shadow-medSage/30">
-                        <div class="icon-slot h-6 mb-1 flex items-center justify-center"></div>
+                        <img src="assets/icons/Icon_11.png" alt="Portal" class="w-10 h-10 object-contain pixelated mb-1">
                         <span class="font-pixel text-[10px] md:text-xs block text-medSage sage-glow leading-tight mb-1">Technologic Dimension</span>
-                        <span class="text-[10px] text-slate-400 font-mono">Internet Portal</span>
+                        <span class="text-[10px] text-slate-400 font-mono">Audio DSP Portal</span>
                     </button>
                 </div>
 
