@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Tree | Cosmonautia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { medTeal: '#24555A', medIce: '#B9D6E5', medPlum: '#4E3A53', medOlive: '#698F3D', medPistachio: '#D6E685', medRose: '#D06D9C', medCream: '#F5EDB9', medWood: '#3e2723' } },
+                fontFamily: { medieval: ['"MedievalSharp"', 'cursive'] }
+            }
+        }
+    </script>
+    <style>body { font-family: 'MedievalSharp', cursive; }</style>
+</head>
+<body class="bg-medPlum text-medCream min-h-screen p-3 md:p-6">
+
+    <div class="max-w-5xl mx-auto border-4 border-medTeal bg-medTeal/40 rounded-3xl p-6 md:p-12 shadow-2xl relative">
+        <a href="index.html" class="text-medIce hover:text-medPistachio mb-6 inline-block">← Return to Dashboard</a>
+        
+        <h1 class="text-4xl text-medPistachio border-b-2 border-medIce/40 pb-4 mb-8 text-center">Skill Tree</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- SCHOLARIS BRANCH -->
+            <div class="bg-medPlum/80 p-6 rounded-xl border-2 border-medOlive shadow-lg">
+                <h2 class="text-3xl text-medOlive mb-4 text-center border-b border-medOlive/40 pb-2">Scholaris</h2>
+                <ul class="space-y-3 text-xl">
+                    <li class="flex justify-between"><span>Cosmonautics:</span> <span class="text-medPistachio">IX</span></li>
+                    <li class="flex justify-between"><span>Arithmetic:</span> <span class="text-medPistachio">X</span></li>
+                    <li class="flex justify-between"><span>Technology:</span> <span class="text-medPistachio">XI</span></li>
+                    <li class="flex justify-between"><span>Scrolls:</span> <span class="text-medPistachio">IV</span></li>
+                    <li class="flex justify-between"><span>Coin:</span> <span class="text-medPistachio">VIII</span></li>
+                    <li class="flex justify-between"><span>Strategy:</span> <span class="text-medPistachio">XI</span></li>
+                    <li class="flex justify-between"><span>Building:</span> <span class="text-medPistachio">V</span></li>
+                    <li class="flex justify-between"><span>Prototyping:</span> <span class="text-medPistachio">V</span></li>
+                </ul>
+            </div>
+
+            <!-- DYNAMICUS BRANCH -->
+            <div class="bg-medPlum/80 p-6 rounded-xl border-2 border-medRose shadow-lg">
+                <h2 class="text-3xl text-medRose mb-4 text-center border-b border-medRose/40 pb-2">Dynamicus</h2>
+                <ul class="space-y-3 text-xl">
+                    <li class="flex justify-between"><span>Endurance:</span> <span class="text-medIce">IV</span></li>
+                    <li class="flex justify-between"><span>Inclusion:</span> <span class="text-medIce">III</span></li>
+                    <li class="flex justify-between"><span>Teamwork:</span> <span class="text-medIce">X</span></li>
+                    <li class="flex justify-between"><span>Adventure:</span> <span class="text-medIce">IV</span></li>
+                    <li class="flex justify-between"><span>Troop Management:</span> <span class="text-medIce">VI</span></li>
+                    <li class="flex justify-between"><span>Apprenticemaking:</span> <span class="text-medIce">II</span></li>
+                    <li class="flex justify-between"><span>Communication:</span> <span class="text-medIce">VIII</span></li>
+                    <li class="flex justify-between"><span>Rowing:</span> <span class="text-medIce">II</span></li>
+                    <li class="flex justify-between"><span>Strength:</span> <span class="text-medIce">II</span></li>
+                    <li class="flex justify-between"><span>Leadership:</span> <span class="text-medIce">VI</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="mt-12 text-center text-medCream/50 text-2xl animate-pulse">
+            Future Skills? Loading...
+        </div>
+    </div>
+
+</body>
+</html>
