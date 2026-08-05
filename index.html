@@ -11,6 +11,7 @@
             theme: {
                 extend: {
                     colors: {
+                        /* New Alchemical Forest Palette */
                         medTeal: '#24555A',
                         medIce: '#B9D6E5',
                         medPlum: '#4E3A53',
@@ -18,72 +19,211 @@
                         medPistachio: '#D6E685',
                         medRose: '#D06D9C',
                         medCream: '#F5EDB9',
-                        medWood: '#3e2723'
+                        medWood: '#3e2723',
+                        medDarkBg: '#1a1423'
                     },
-                    fontFamily: { medieval: ['"MedievalSharp"', 'cursive'] }
+                    fontFamily: {
+                        medieval: ['"MedievalSharp"', 'cursive']
+                    }
                 }
             }
         }
     </script>
     <style>
         body { font-family: 'MedievalSharp', cursive; }
-        .wood-panel { background-color: #3e2723; border: 2px solid #F5EDB9; box-shadow: 0 4px 6px rgba(0,0,0,0.4); }
+        .glow-text { text-shadow: 0 0 8px rgba(214, 230, 133, 0.6); }
         .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+        
+        .wood-panel {
+            background-color: #4E3A53;
+            border: 2px solid #698F3D;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.4), 0 4px 6px rgba(0,0,0,0.4);
+        }
+        .wood-panel:hover {
+            border-color: #D6E685;
+            background-color: #5c4462;
+        }
     </style>
 </head>
-<body class="bg-medPlum text-medCream min-h-screen p-3 md:p-6" onload="initCoins()">
+<body class="bg-medDarkBg text-medCream min-h-screen p-3 md:p-6" onload="initCoins()">
 
     <!-- GAMIFICATION: Coin Pouch -->
-    <div class="fixed top-4 right-4 bg-medWood border-2 border-medPistachio text-medPistachio px-3 py-1 rounded-lg z-50 shadow-lg flex items-center gap-2">
-        <span class="text-xl">🪙</span> <span id="coin-count">0</span>
+    <div class="fixed top-4 right-4 bg-medWood border-2 border-medPistachio text-medPistachio px-4 py-2 rounded-lg z-50 shadow-lg flex items-center gap-2 text-xl">
+        <span>🪙</span> <span id="coin-count">0</span>
     </div>
 
-    <div class="max-w-6xl mx-auto border-4 border-medTeal bg-medTeal/40 rounded-3xl p-4 md:p-8 shadow-2xl relative overflow-hidden">
-        
-        <header class="border-b-2 border-medIce/40 pb-6 mb-6 text-center">
-            <h1 class="text-3xl md:text-5xl text-medPistachio mb-2 drop-shadow-md tracking-widest">COSMONAUTIA</h1>
-            <h2 class="text-xl text-medIce tracking-widest">QUEST FOR REALM IMPACT</h2>
-            <div class="mt-4 text-medCream/90">
-                <span class="text-medRose font-bold">DRIVING DIRECTIVE:</span> Leverage <a href="skills.html" class="text-medPistachio hover:text-medIce underline">SKILLS</a> to become a Realm Force for Good.
+    <!-- MAIN GAME CONTAINER -->
+    <div class="max-w-6xl mx-auto border-[6px] border-medTeal bg-medPlum rounded-3xl p-4 md:p-8 shadow-2xl relative overflow-hidden">
+
+        <!-- HEADER / PERSONA IDENTIFICATION SECTION -->
+        <header class="border-b-2 border-medIce/30 pb-6 mb-6">
+            <div class="flex flex-wrap justify-between items-center text-sm text-medIce mb-4 gap-2">
+                <span class="text-medPistachio glow-text">● STATUS: ONLINE</span>
+                <span class="text-medCream text-xl tracking-widest">COSMONAUTIA</span>
+                <span class="text-medRose">REALM: THE ACADEMY</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                
+                <!-- PERSONA TILE -->
+                <div class="lg:col-span-2 flex items-center gap-4 bg-medTeal/40 p-4 rounded-2xl border-2 border-medOlive shadow-inner">
+                    <div class="w-24 h-24 bg-medDarkBg border-2 border-medPistachio rounded-xl p-1 flex-shrink-0 flex items-center justify-center relative shadow-[0_0_15px_rgba(214,230,133,0.3)]">
+                        <!-- User Avatar -->
+                        <img src="assets/avatars/Avatars_02.png" alt="Madeline Beebe Avatar" class="w-full h-full object-contain pixelated">
+                        <span class="absolute -bottom-2 -right-2 bg-medRose text-medCream text-xs px-2 py-0.5 rounded border border-medDarkBg">LVL 5</span>
+                    </div>
+
+                    <div>
+                        <h1 class="text-2xl md:text-3xl text-medPistachio glow-text mb-1">Madeline Beebe</h1>
+                        <p class="text-lg text-medIce">Cosmonautics Scholar & Alchemist</p>
+                        <div class="mt-2 text-sm text-medCream flex flex-wrap gap-x-4 gap-y-1">
+                            <span class="bg-medOlive/40 px-2 py-0.5 rounded">RANK: Magister</span>
+                            <span class="bg-medTeal/60 px-2 py-0.5 rounded">HUB: Tuscaloosa, AL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUEST IN PROGRESS TILE -->
+                <div class="bg-medRose/20 p-5 rounded-2xl border-2 border-medRose shadow-lg text-center">
+                    <span class="text-medRose block mb-1 tracking-widest text-sm">⚡ ACTIVE QUEST</span>
+                    <h2 class="text-xl text-medCream">Year 5 at The Academy</h2>
+                </div>
+
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-medIce/20 text-lg text-medCream/90 text-center">
+                <span class="text-medPistachio text-xl">MAIN DIRECTIVE:</span> Leverage <a href="skills.html" class="text-medIce hover:text-medPistachio underline">SKILLS</a> to become a Realm Force for Good.
             </div>
         </header>
 
-        <!-- PERSONA SECTION -->
-        <section class="bg-medPlum/80 p-6 rounded-2xl border-2 border-medRose shadow-inner mb-8 flex flex-col md:flex-row gap-6 items-center">
-            <div class="w-32 h-32 bg-medTeal border-4 border-medPistachio rounded-full p-2 flex-shrink-0 relative shadow-[0_0_15px_rgba(214,230,133,0.5)]">
-                <!-- Avatar image path goes here -->
-                <img src="assets/avatars/Avatars_02.png" alt="Avatar" class="w-full h-full object-contain pixelated rounded-full">
-            </div>
-            <div class="flex-grow text-center md:text-left">
-                <h3 class="text-3xl text-medCream mb-2">Madeline Beebe</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-medIce">
-                    <p><span class="text-medRose block text-xs">LEVEL</span> 5: Magister</p>
-                    <p><span class="text-medRose block text-xs">CLASS</span> Cosmonautics Scholar</p>
-                    <p><span class="text-medRose block text-xs">CATEGORY</span> Alchemist</p>
-                    <p><span class="text-medRose block text-xs">LOCATION</span> The Academy (Tuscaloosa, AL)</p>
+        <!-- NAVIGATION GRID -->
+        <section class="mb-10">
+            <!-- CURRENT HUB TILE -->
+            <div class="border-2 border-medOlive bg-medTeal/30 p-6 rounded-2xl flex gap-6 items-center shadow-md mb-6">
+                <div class="w-20 h-20 bg-medDarkBg border-2 border-medIce rounded-xl flex items-center justify-center flex-shrink-0 p-2">
+                    <img src="assets/buildings/Castle.png" alt="The Academy Castle" class="w-full h-full object-contain pixelated">
                 </div>
-                <p class="mt-4 text-medPistachio bg-medTeal/50 inline-block px-3 py-1 rounded">Recent Activity: Mission 5A Completed (Summer 2026)</p>
+                <div class="w-full">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-2xl text-medPistachio glow-text">The Academy</h3>
+                        <span class="text-sm text-medPlum bg-medIce px-3 py-1 rounded font-bold">40,000+ Apprentices</span>
+                    </div>
+                    <p class="text-md text-medCream/80 mb-3">University of Alabama • Tuscaloosa, Alabama</p>
+                    <div class="space-y-1 text-md text-medCream">
+                        <div class="flex items-center gap-2">
+                            <span class="text-medOlive">✓ Degree Path I:</span> B.S. Aerospace Engineering <span class="text-medCream/50">(Completed Spring 2026)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-medRose">⏳ Degree Path II:</span> Master of Business Administration <span class="text-medCream/50">(In Progress)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MULTI-PAGE NAVIGATION ROW -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <a href="map.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
+                    <img src="assets/ui/WoodTable.png" alt="Map" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
+                    <span>Overworld Map</span>
+                </a>
+                <a href="inventory.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
+                    <img src="assets/icons/Icon_06.png" alt="Inventory" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
+                    <span>Artifact Inventory</span>
+                </a>
+                <a href="campaign.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
+                    <img src="assets/ui/SpecialPaper.png" alt="Log" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
+                    <span>Campaign Log</span>
+                </a>
+                <a href="skills.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
+                    <img src="assets/icons/Icon_01.png" alt="Skills" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
+                    <span>Skill Tree</span>
+                </a>
+                <a href="sidequests.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group col-span-2 md:col-span-1">
+                    <img src="assets/icons/Icon_08.png" alt="Quests" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
+                    <span>Side Quests</span>
+                </a>
             </div>
         </section>
 
-        <!-- REALM NAVIGATION -->
-        <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-            <a href="academy.html" class="wood-panel p-4 rounded-xl text-medCream hover:text-medPistachio hover:border-medPistachio transition-all text-center group">The Academy</a>
-            <a href="campaign.html" class="wood-panel p-4 rounded-xl text-medCream hover:text-medPistachio hover:border-medPistachio transition-all text-center group">Campaign Log</a>
-            <a href="skills.html" class="wood-panel p-4 rounded-xl text-medCream hover:text-medPistachio hover:border-medPistachio transition-all text-center group">Skill Tree</a>
-            <a href="inventory.html" class="wood-panel p-4 rounded-xl text-medCream hover:text-medPistachio hover:border-medPistachio transition-all text-center group">Inventory</a>
-            <a href="sidequests.html" class="wood-panel p-4 rounded-xl text-medCream hover:text-medPistachio hover:border-medPistachio transition-all text-center group">Side Quests</a>
-            <a href="map.html" class="wood-panel p-4 rounded-xl text-medCream hover:text-medPistachio hover:border-medPistachio transition-all text-center group">Overworld Map</a>
+        <!-- RECENT CAMPAIGN ADDITIONS -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-4 border-b border-medIce/20 pb-2">
+                <h2 class="text-xl text-medIce tracking-widest">RECENT CAMPAIGN ADDITIONS</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- MISSION 5A -->
+                <div class="border-2 border-medOlive bg-medTeal/40 p-5 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xl text-medPistachio">5A: Symphonic Visualizer</span>
+                        <span class="px-2 py-1 bg-medOlive/40 text-medCream text-sm rounded">Summer 2026</span>
+                    </div>
+                    <p class="text-md text-medIce mb-2">Location: Technologic Dimension</p>
+                    <p class="text-medCream mb-4">Full stack web engine to turn music into polar art.</p>
+                    <div class="text-sm text-medPistachio">SKILLS UNLOCKED: Technology X-XI, Endurance IV, Arithmetic X</div>
+                </div>
+
+                <!-- MISSION 5B -->
+                <div class="border-2 border-medRose bg-medPlum p-5 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xl text-medRose">5B: DFW Research Scroll</span>
+                        <span class="px-2 py-1 bg-medRose/30 text-medCream text-sm rounded">Fall 2026</span>
+                    </div>
+                    <p class="text-md text-medIce mb-2">Co-Authorship on Research Scroll</p>
+                    <p class="text-medCream mb-4">Synthesis of commuting survey analytics for clean transit strategies.</p>
+                    <div class="text-sm text-medIce">SKILLS UNLOCKED: Loading...</div>
+                </div>
+            </div>
         </section>
 
-        <!-- EXTERNAL LINKS -->
-        <section class="flex justify-center gap-6 border-t border-medIce/30 pt-6">
-            <a href="https://docs.google.com/document/d/10qWXlecFlWsX5ebNWdvdpd8UZQAwDGVgnARP31BDIO4/edit?tab=t.0" target="_blank" class="bg-medTeal border-2 border-medIce text-medIce px-6 py-2 rounded-full hover:bg-medIce hover:text-medTeal transition-colors">Resume Scroll</a>
-            <a href="https://www.linkedin.com/in/madeline-beebe1/" target="_blank" class="bg-medTeal border-2 border-medIce text-medIce px-6 py-2 rounded-full hover:bg-medIce hover:text-medTeal transition-colors">LinkedIn Guild</a>
+        <!-- SKILLS LOG PREVIEW -->
+        <section class="mb-8 border-t border-medIce/20 pt-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl text-medIce tracking-widest">SKILLS LOG PREVIEW</h2>
+                <a href="skills.html" class="text-sm text-medPistachio hover:text-medCream transition-colors">View Full Tree →</a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_01.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="text-medPistachio text-lg">Cosmonautics</div>
+                        <p class="text-sm text-medIce">Ranks I – IX</p>
+                    </div>
+                </div>
+                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_06.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="text-medPistachio text-lg">Technology</div>
+                        <p class="text-sm text-medIce">Ranks I – XI</p>
+                    </div>
+                </div>
+                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_08.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="text-medPistachio text-lg">Strategy</div>
+                        <p class="text-sm text-medIce">Ranks I – XI</p>
+                    </div>
+                </div>
+                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
+                    <img src="assets/icons/Icon_05.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
+                    <div>
+                        <div class="text-medPistachio text-lg">Teamwork</div>
+                        <p class="text-sm text-medIce">Ranks I – X</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- GAMIFICATION HIDDEN COIN -->
-        <button onclick="collectCoin(this)" class="absolute bottom-4 left-4 opacity-20 hover:opacity-100 transition-opacity text-2xl" title="A hidden coin!">
+        <!-- FOOTER COMMAND -->
+        <footer class="mt-12 pt-6 border-t border-medIce/20 text-center">
+            <a href="mailto:msbeebe@outlook.com" class="text-medIce hover:text-medPistachio text-lg transition-colors tracking-widest">
+                > PRESS START TO TRANSMIT MESSAGE // MSBEEBE@OUTLOOK.COM 
+            </a>
+        </footer>
+
+        <!-- GAMIFICATION COIN -->
+        <button onclick="collectCoin(this)" class="absolute bottom-6 left-6 opacity-40 hover:opacity-100 hover:-translate-y-2 transition-all text-3xl" title="A hidden coin!">
             🪙
         </button>
 
@@ -101,7 +241,6 @@
             document.getElementById('coin-count').innerText = coins;
             element.style.display = 'none';
             alert("You found a hidden coin! Check your pouch.");
-            // Logic to unlock something can go here
         }
     </script>
 </body>
