@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COSMONAUTIA: QUEST FOR REALM IMPACT</title>
+    <title>Madeline Beebe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <script>
@@ -11,7 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        /* New Alchemical Forest Palette */
+                        /* Magical Forest Palette */
                         medTeal: '#24555A',
                         medIce: '#B9D6E5',
                         medPlum: '#4E3A53',
@@ -19,228 +19,270 @@
                         medPistachio: '#D6E685',
                         medRose: '#D06D9C',
                         medCream: '#F5EDB9',
-                        medWood: '#3e2723',
-                        medDarkBg: '#1a1423'
+                        medWood: '#3e2723'
                     },
-                    fontFamily: {
-                        medieval: ['"MedievalSharp"', 'cursive']
-                    }
+                    fontFamily: { medieval: ['"MedievalSharp"', 'cursive'] }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'MedievalSharp', cursive; }
-        .glow-text { text-shadow: 0 0 8px rgba(214, 230, 133, 0.6); }
+        body { 
+            font-family: 'MedievalSharp', cursive; 
+            background-color: #4E3A53; /* Deep Plum Background */
+            overflow-x: hidden;
+        }
+
+        /* Neon / Magical Glows */
+        .glow-pistachio { text-shadow: 0 0 10px rgba(214, 230, 133, 0.8), 0 0 20px rgba(214, 230, 133, 0.4); }
+        .glow-ice { text-shadow: 0 0 10px rgba(185, 214, 229, 0.8); }
+        .glow-rose { text-shadow: 0 0 10px rgba(208, 109, 156, 0.8); box-shadow: 0 0 15px rgba(208, 109, 156, 0.6); }
+        .box-glow-teal { box-shadow: 0 0 25px rgba(36, 85, 90, 0.9), inset 0 0 20px rgba(36, 85, 90, 0.5); }
+        
         .pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
         
-        .wood-panel {
-            background-color: #4E3A53;
-            border: 2px solid #698F3D;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.4), 0 4px 6px rgba(0,0,0,0.4);
+        /* Draggable Carousel Setup */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Physical Wood Tile Effects */
+        .wood-tile {
+            background-color: #24555A; /* Teal base */
+            border: 2px solid #D6E685; /* Pistachio border */
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 6px 8px rgba(0,0,0,0.5);
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
         }
-        .wood-panel:hover {
-            border-color: #D6E685;
-            background-color: #5c4462;
+        .wood-tile:hover {
+            filter: brightness(1.2);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px rgba(214, 230, 133, 0.4);
         }
+
+        /* Pouch Pulse Animation */
+        @keyframes goldPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(214,230,133,0); }
+            50% { transform: scale(1.15); box-shadow: 0 0 20px rgba(214,230,133,1); }
+            100% { transform: scale(1); box-shadow: 0 0 0 rgba(214,230,133,0); }
+        }
+        .animate-pulse-gold { animation: goldPulse 0.5s ease-out; }
     </style>
 </head>
-<body class="bg-medDarkBg text-medCream min-h-screen p-3 md:p-6" onload="initCoins()">
+<body class="text-medCream min-h-screen p-3 md:p-8" onload="initDashboard()">
+
+    <!-- PERSISTENT TOP LEFT NAME -->
+    <div class="fixed top-4 left-4 z-50 text-2xl text-medPistachio glow-pistachio pointer-events-none">
+        Madeline Beebe
+    </div>
 
     <!-- GAMIFICATION: Coin Pouch -->
-    <div class="fixed top-4 right-4 bg-medWood border-2 border-medPistachio text-medPistachio px-4 py-2 rounded-lg z-50 shadow-lg flex items-center gap-2 text-xl">
-        <span>🪙</span> <span id="coin-count">0</span>
+    <div id="pouch" class="fixed top-4 right-4 bg-medWood border-2 border-medPistachio text-medPistachio px-4 py-2 rounded-xl z-50 shadow-lg flex items-center gap-2 text-2xl cursor-default">
+        <span>🪙</span> <span id="coin-count" class="glow-pistachio">0</span>
     </div>
 
     <!-- MAIN GAME CONTAINER -->
-    <div class="max-w-6xl mx-auto border-[6px] border-medTeal bg-medPlum rounded-3xl p-4 md:p-8 shadow-2xl relative overflow-hidden">
+    <div class="max-w-5xl mx-auto mt-12 md:mt-8 border-4 border-medPistachio bg-medTeal rounded-3xl p-6 md:p-10 box-glow-teal relative">
 
-        <!-- HEADER / PERSONA IDENTIFICATION SECTION -->
-        <header class="border-b-2 border-medIce/30 pb-6 mb-6">
-            <div class="flex flex-wrap justify-between items-center text-sm text-medIce mb-4 gap-2">
-                <span class="text-medPistachio glow-text">● STATUS: ONLINE</span>
-                <span class="text-medCream text-xl tracking-widest">COSMONAUTIA</span>
-                <span class="text-medRose">REALM: THE ACADEMY</span>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-                
-                <!-- PERSONA TILE -->
-                <div class="lg:col-span-2 flex items-center gap-4 bg-medTeal/40 p-4 rounded-2xl border-2 border-medOlive shadow-inner">
-                    <div class="w-24 h-24 bg-medDarkBg border-2 border-medPistachio rounded-xl p-1 flex-shrink-0 flex items-center justify-center relative shadow-[0_0_15px_rgba(214,230,133,0.3)]">
-                        <!-- User Avatar -->
-                        <img src="assets/avatars/Avatars_02.png" alt="Madeline Beebe Avatar" class="w-full h-full object-contain pixelated">
-                        <span class="absolute -bottom-2 -right-2 bg-medRose text-medCream text-xs px-2 py-0.5 rounded border border-medDarkBg">LVL 5</span>
-                    </div>
-
-                    <div>
-                        <h1 class="text-2xl md:text-3xl text-medPistachio glow-text mb-1">Madeline Beebe</h1>
-                        <p class="text-lg text-medIce">Cosmonautics Scholar & Alchemist</p>
-                        <div class="mt-2 text-sm text-medCream flex flex-wrap gap-x-4 gap-y-1">
-                            <span class="bg-medOlive/40 px-2 py-0.5 rounded">RANK: Magister</span>
-                            <span class="bg-medTeal/60 px-2 py-0.5 rounded">HUB: Tuscaloosa, AL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- QUEST IN PROGRESS TILE -->
-                <div class="bg-medRose/20 p-5 rounded-2xl border-2 border-medRose shadow-lg text-center">
-                    <span class="text-medRose block mb-1 tracking-widest text-sm">⚡ ACTIVE QUEST</span>
-                    <h2 class="text-xl text-medCream">Year 5 at The Academy</h2>
-                </div>
-
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-medIce/20 text-lg text-medCream/90 text-center">
-                <span class="text-medPistachio text-xl">MAIN DIRECTIVE:</span> Leverage <a href="skills.html" class="text-medIce hover:text-medPistachio underline">SKILLS</a> to become a Realm Force for Good.
+        <!-- HEADER / DIRECTIVE -->
+        <header class="border-b-2 border-medIce/40 pb-6 mb-8 text-center">
+            <div class="text-medPistachio glow-pistachio tracking-widest text-sm mb-4">● SYSTEM ONLINE</div>
+            <h1 class="text-4xl md:text-5xl text-medIce glow-ice mb-2 tracking-widest uppercase">Cosmonautia</h1>
+            <h2 class="text-2xl text-medCream tracking-wide mb-6">Quest for Realm Impact</h2>
+            
+            <div class="bg-medPlum/50 inline-block px-6 py-3 rounded-xl border border-medPistachio/50">
+                <span class="text-xl text-medPistachio glow-pistachio">Driving Directive: Leverage skills to become a Realm Force for Good.</span>
             </div>
         </header>
 
-        <!-- NAVIGATION GRID -->
-        <section class="mb-10">
-            <!-- CURRENT HUB TILE -->
-            <div class="border-2 border-medOlive bg-medTeal/30 p-6 rounded-2xl flex gap-6 items-center shadow-md mb-6">
-                <div class="w-20 h-20 bg-medDarkBg border-2 border-medIce rounded-xl flex items-center justify-center flex-shrink-0 p-2">
-                    <img src="assets/buildings/Castle.png" alt="The Academy Castle" class="w-full h-full object-contain pixelated">
+        <!-- PERSONA SECTION -->
+        <section class="bg-[#1a282a] p-6 rounded-2xl border-2 border-medOlive shadow-inner mb-10 flex flex-col md:flex-row gap-8 items-center relative">
+            
+            <!-- Avatar with integrated Level Badge -->
+            <div class="relative w-32 h-32 flex-shrink-0">
+                <div class="w-full h-full bg-medPlum border-4 border-medIce rounded-full p-2 shadow-[0_0_20px_rgba(185,214,229,0.5)]">
+                    <img src="assets/avatars/Avatars_02.png" alt="Avatar" class="w-full h-full object-contain pixelated rounded-full">
                 </div>
-                <div class="w-full">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-2xl text-medPistachio glow-text">The Academy</h3>
-                        <span class="text-sm text-medPlum bg-medIce px-3 py-1 rounded font-bold">40,000+ Apprentices</span>
-                    </div>
-                    <p class="text-md text-medCream/80 mb-3">University of Alabama • Tuscaloosa, Alabama</p>
-                    <div class="space-y-1 text-md text-medCream">
-                        <div class="flex items-center gap-2">
-                            <span class="text-medOlive">✓ Degree Path I:</span> B.S. Aerospace Engineering <span class="text-medCream/50">(Completed Spring 2026)</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-medRose">⏳ Degree Path II:</span> Master of Business Administration <span class="text-medCream/50">(In Progress)</span>
-                        </div>
-                    </div>
+                <!-- Touching Level Badge -->
+                <div class="absolute -top-2 -right-2 w-10 h-10 bg-medRose text-medCream border-2 border-medCream rounded-full flex items-center justify-center text-xl font-bold glow-rose z-10">
+                    5
                 </div>
             </div>
 
-            <!-- MULTI-PAGE NAVIGATION ROW -->
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                <a href="map.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
-                    <img src="assets/ui/WoodTable.png" alt="Map" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
-                    <span>Overworld Map</span>
-                </a>
-                <a href="inventory.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
-                    <img src="assets/icons/Icon_06.png" alt="Inventory" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
-                    <span>Artifact Inventory</span>
-                </a>
-                <a href="campaign.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
-                    <img src="assets/ui/SpecialPaper.png" alt="Log" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
-                    <span>Campaign Log</span>
-                </a>
-                <a href="skills.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group">
-                    <img src="assets/icons/Icon_01.png" alt="Skills" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
-                    <span>Skill Tree</span>
-                </a>
-                <a href="sidequests.html" class="wood-panel p-3 rounded-xl text-medCream transition-all text-sm flex flex-col items-center justify-center gap-2 group col-span-2 md:col-span-1">
-                    <img src="assets/icons/Icon_08.png" alt="Quests" class="w-10 h-10 object-contain pixelated group-hover:-translate-y-1 transition-transform">
-                    <span>Side Quests</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- RECENT CAMPAIGN ADDITIONS -->
-        <section class="mb-10">
-            <div class="flex justify-between items-center mb-4 border-b border-medIce/20 pb-2">
-                <h2 class="text-xl text-medIce tracking-widest">RECENT CAMPAIGN ADDITIONS</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- MISSION 5A -->
-                <div class="border-2 border-medOlive bg-medTeal/40 p-5 rounded-xl shadow-lg">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-xl text-medPistachio">5A: Symphonic Visualizer</span>
-                        <span class="px-2 py-1 bg-medOlive/40 text-medCream text-sm rounded">Summer 2026</span>
-                    </div>
-                    <p class="text-md text-medIce mb-2">Location: Technologic Dimension</p>
-                    <p class="text-medCream mb-4">Full stack web engine to turn music into polar art.</p>
-                    <div class="text-sm text-medPistachio">SKILLS UNLOCKED: Technology X-XI, Endurance IV, Arithmetic X</div>
-                </div>
-
-                <!-- MISSION 5B -->
-                <div class="border-2 border-medRose bg-medPlum p-5 rounded-xl shadow-lg">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-xl text-medRose">5B: DFW Research Scroll</span>
-                        <span class="px-2 py-1 bg-medRose/30 text-medCream text-sm rounded">Fall 2026</span>
-                    </div>
-                    <p class="text-md text-medIce mb-2">Co-Authorship on Research Scroll</p>
-                    <p class="text-medCream mb-4">Synthesis of commuting survey analytics for clean transit strategies.</p>
-                    <div class="text-sm text-medIce">SKILLS UNLOCKED: Loading...</div>
+            <!-- Stats -->
+            <div class="flex-grow text-center md:text-left w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-lg text-medCream bg-medTeal/40 p-4 rounded-xl border border-medIce/30">
+                    <p><span class="text-medPistachio block text-sm mb-1 tracking-wider glow-pistachio">CLASS</span> Cosmonautics Scholar</p>
+                    <p><span class="text-medPistachio block text-sm mb-1 tracking-wider glow-pistachio">CATEGORY</span> Alchemist</p>
+                    <p><span class="text-medPistachio block text-sm mb-1 tracking-wider glow-pistachio">LOCATION</span> The Academy</p>
                 </div>
             </div>
         </section>
 
-        <!-- SKILLS LOG PREVIEW -->
-        <section class="mb-8 border-t border-medIce/20 pt-6">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl text-medIce tracking-widest">SKILLS LOG PREVIEW</h2>
-                <a href="skills.html" class="text-sm text-medPistachio hover:text-medCream transition-colors">View Full Tree →</a>
-            </div>
+        <!-- INTERACTIVE CAROUSEL: REALM NAVIGATION -->
+        <section class="mb-10">
+            <h3 class="text-2xl text-medIce glow-ice mb-4 text-center">Realm Navigation</h3>
+            
+            <!-- Draggable & Auto-Scrolling Container -->
+            <div id="carousel" class="flex overflow-x-auto hide-scrollbar gap-6 py-6 cursor-grab active:cursor-grabbing select-none w-full">
+                
+                <!-- Tile 1 -->
+                <a href="academy.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
+                    <img src="assets/buildings/Castle.png" alt="Academy" class="w-12 h-12 pixelated pointer-events-none">
+                    <span class="text-lg pointer-events-none">The Academy</span>
+                </a>
+                
+                <!-- Tile 2 -->
+                <a href="campaign.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
+                    <img src="assets/ui/SpecialPaper.png" alt="Log" class="w-12 h-12 pixelated pointer-events-none">
+                    <span class="text-lg pointer-events-none">Campaign Log</span>
+                </a>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Icon_01.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="text-medPistachio text-lg">Cosmonautics</div>
-                        <p class="text-sm text-medIce">Ranks I – IX</p>
-                    </div>
-                </div>
-                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Icon_06.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="text-medPistachio text-lg">Technology</div>
-                        <p class="text-sm text-medIce">Ranks I – XI</p>
-                    </div>
-                </div>
-                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Icon_08.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="text-medPistachio text-lg">Strategy</div>
-                        <p class="text-sm text-medIce">Ranks I – XI</p>
-                    </div>
-                </div>
-                <div class="p-3 bg-medDarkBg/60 border border-medOlive/50 rounded-xl flex items-center gap-3">
-                    <img src="assets/icons/Icon_05.png" class="w-10 h-10 object-contain pixelated flex-shrink-0">
-                    <div>
-                        <div class="text-medPistachio text-lg">Teamwork</div>
-                        <p class="text-sm text-medIce">Ranks I – X</p>
-                    </div>
-                </div>
+                <!-- Tile 3 -->
+                <a href="skills.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
+                    <img src="assets/icons/Icon_01.png" alt="Skills" class="w-12 h-12 pixelated pointer-events-none">
+                    <span class="text-lg pointer-events-none">Skill Tree</span>
+                </a>
+
+                <!-- Tile 4 -->
+                <a href="inventory.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
+                    <img src="assets/icons/Icon_06.png" alt="Inventory" class="w-12 h-12 pixelated pointer-events-none">
+                    <span class="text-lg pointer-events-none">Inventory</span>
+                </a>
+
+                <!-- Tile 5 -->
+                <a href="sidequests.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
+                    <img src="assets/icons/Icon_08.png" alt="Quests" class="w-12 h-12 pixelated pointer-events-none">
+                    <span class="text-lg pointer-events-none">Side Quests</span>
+                </a>
+
+                <!-- Tile 6 -->
+                <a href="map.html" draggable="false" class="wood-tile flex-shrink-0 w-44 h-36 rounded-2xl flex flex-col items-center justify-center gap-3 text-medCream">
+                    <img src="assets/ui/WoodTable.png" alt="Map" class="w-12 h-12 pixelated pointer-events-none">
+                    <span class="text-lg pointer-events-none">Overworld Map</span>
+                </a>
+
             </div>
         </section>
 
         <!-- FOOTER COMMAND -->
-        <footer class="mt-12 pt-6 border-t border-medIce/20 text-center">
-            <a href="mailto:msbeebe@outlook.com" class="text-medIce hover:text-medPistachio text-lg transition-colors tracking-widest">
-                > PRESS START TO TRANSMIT MESSAGE // MSBEEBE@OUTLOOK.COM 
+        <footer class="pt-6 border-t-2 border-medIce/30 text-center">
+            <a href="mailto:msbeebe@outlook.com" class="text-xl text-medRose glow-rose hover:text-medCream transition-colors tracking-widest">
+                > PRESS START TO TRANSMIT MESSAGE 
             </a>
         </footer>
 
         <!-- GAMIFICATION COIN -->
-        <button onclick="collectCoin(this)" class="absolute bottom-6 left-6 opacity-40 hover:opacity-100 hover:-translate-y-2 transition-all text-3xl" title="A hidden coin!">
+        <button id="hidden-coin" onclick="collectCoin(event, this)" class="absolute bottom-6 left-6 text-4xl opacity-50 hover:opacity-100 hover:scale-110 transition-all drop-shadow-[0_0_10px_rgba(214,230,133,0.8)]" title="A hidden coin!">
             🪙
         </button>
 
     </div>
 
     <script>
-        function initCoins() {
+        // --- 1. Coin Gamification Logic ---
+        function initDashboard() {
             let coins = localStorage.getItem('agencia_coins') || 0;
             document.getElementById('coin-count').innerText = coins;
+            setupCarousel();
         }
-        function collectCoin(element) {
-            let coins = parseInt(localStorage.getItem('agencia_coins') || 0);
-            coins += 1;
-            localStorage.setItem('agencia_coins', coins);
-            document.getElementById('coin-count').innerText = coins;
-            element.style.display = 'none';
-            alert("You found a hidden coin! Check your pouch.");
+
+        function collectCoin(event, element) {
+            const pouch = document.getElementById('pouch');
+            
+            // Create a ghost coin for the flight animation
+            const ghostCoin = document.createElement('div');
+            ghostCoin.innerText = '🪙';
+            ghostCoin.style.position = 'fixed';
+            ghostCoin.style.left = event.clientX + 'px';
+            ghostCoin.style.top = event.clientY + 'px';
+            ghostCoin.style.fontSize = '2.25rem';
+            ghostCoin.style.zIndex = '9999';
+            ghostCoin.style.pointerEvents = 'none';
+            // Easing gives it a nice physical arc feel
+            ghostCoin.style.transition = 'all 0.7s cubic-bezier(0.25, 1, 0.5, 1)'; 
+            document.body.appendChild(ghostCoin);
+            
+            // Hide the original coin immediately
+            element.style.opacity = '0';
+            element.style.pointerEvents = 'none';
+
+            // Trigger the flight to the pouch
+            setTimeout(() => {
+                const pouchRect = pouch.getBoundingClientRect();
+                // Aim for the center of the pouch
+                ghostCoin.style.left = (pouchRect.left + 20) + 'px';
+                ghostCoin.style.top = (pouchRect.top + 10) + 'px';
+                ghostCoin.style.transform = 'scale(0.5)';
+                ghostCoin.style.opacity = '0';
+            }, 20);
+
+            // Complete the collection
+            setTimeout(() => {
+                ghostCoin.remove();
+                
+                // Update Local Storage
+                let coins = parseInt(localStorage.getItem('agencia_coins') || 0) + 1;
+                localStorage.setItem('agencia_coins', coins);
+                document.getElementById('coin-count').innerText = coins;
+                
+                // Flash the pouch
+                pouch.classList.add('animate-pulse-gold');
+                setTimeout(() => pouch.classList.remove('animate-pulse-gold'), 500);
+            }, 720);
+        }
+
+        // --- 2. Interactive Carousel Logic ---
+        function setupCarousel() {
+            const carousel = document.getElementById('carousel');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let isHovered = false;
+            let scrollDirection = 1; // 1 for right, -1 for left
+
+            // Drag to Scroll Logic
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                carousel.classList.add('cursor-grabbing');
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+            
+            carousel.addEventListener('mouseleave', () => { 
+                isDown = false; 
+                isHovered = false; 
+                carousel.classList.remove('cursor-grabbing'); 
+            });
+            
+            carousel.addEventListener('mouseup', () => { 
+                isDown = false; 
+                carousel.classList.remove('cursor-grabbing'); 
+            });
+            
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed multiplier
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+
+            // Auto-Cycle Logic
+            carousel.addEventListener('mouseenter', () => isHovered = true);
+            carousel.addEventListener('touchstart', () => isHovered = true);
+            carousel.addEventListener('touchend', () => isHovered = false);
+
+            setInterval(() => {
+                if(!isHovered && !isDown) {
+                    carousel.scrollLeft += scrollDirection;
+                    
+                    // Bounce back and forth when hitting the ends
+                    if(carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 1)) {
+                        scrollDirection = -1;
+                    } else if (carousel.scrollLeft <= 0) {
+                        scrollDirection = 1;
+                    }
+                }
+            }, 30);
         }
     </script>
 </body>
