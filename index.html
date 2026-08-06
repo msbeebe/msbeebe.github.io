@@ -29,10 +29,12 @@
     <style>
         body { 
             font-family: 'MedievalSharp', cursive; 
+            margin: 0;
+            overflow-x: hidden; 
             background-color: #4E3A53; /* Deep Plum Background */
-            overflow-x: hidden;
         }
 
+        /* Magical Glows */
         .glow-pistachio { text-shadow: 0 0 10px rgba(214, 230, 133, 0.8); }
         .glow-rose { text-shadow: 0 0 10px rgba(208, 109, 156, 0.8); box-shadow: 0 0 15px rgba(208, 109, 156, 0.6); }
         .glow-ice { text-shadow: 0 0 10px rgba(185, 214, 229, 0.8); }
@@ -59,7 +61,7 @@
         /* Interactive Room Objects */
         .room-object {
             position: absolute;
-            z-index: 10;
+            z-index: 30; /* High z-index for clickable items */
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             cursor: pointer;
             display: flex;
@@ -67,7 +69,7 @@
             align-items: center;
         }
         .room-object:hover {
-            transform: scale(1.15) translateY(-5px);
+            transform: scale(1.10) translateY(-5px);
             filter: drop-shadow(0 0 15px rgba(214,230,133,0.6));
         }
         .room-object span {
@@ -82,9 +84,17 @@
             pointer-events: none;
             color: #D6E685;
             font-size: 0.875rem;
+            position: absolute;
+            bottom: -30px;
         }
         .room-object:hover span {
             opacity: 1;
+        }
+
+        /* Non-interactive decor */
+        .room-decor {
+            position: absolute;
+            pointer-events: none;
         }
 
         /* Pouch Pulse Animation */
@@ -103,15 +113,15 @@
         <span>🪙</span> <span id="coin-count" class="glow-pistachio">0</span>
     </div>
 
-    <!-- DRIVING DIRECTIVE (Outside the box) -->
-    <!--<div class="w-full max-w-5xl text-center mt-16 md:mt-8 mb-6">
-        <p class="text-medPistachio text-lg md:text-2xl tracking-widest glow-pistachio uppercase">
+    <!-- DRIVING DIRECTIVE (Outside the box, top center) -->
+    <div class="w-full max-w-5xl text-center mt-16 md:mt-8 mb-6 px-4">
+        <p class="text-medPistachio text-lg md:text-2xl tracking-widest glow-pistachio uppercase leading-relaxed">
             driving directive: leverage skills to become a realm force for good.
         </p>
     </div>
 
     <!-- MAIN DIORAMA WRAPPER -->
-    <div class="relative w-full max-w-5xl mx-auto mt-8 md:mt-12">
+    <div class="relative w-full max-w-5xl mx-auto mt-8 md:mt-12 mb-12">
         
         <!-- PERSONA BOX (Breaking the frame, Top-Left) -->
         <div class="absolute -top-16 md:-top-12 -left-2 md:-left-8 z-50 bg-medNavyTeal/95 border-4 border-medPistachio p-4 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.8)] w-72 md:w-80 transform hover:scale-105 transition-transform cursor-default">
@@ -126,64 +136,81 @@
         <!-- THE ROOM BOX -->
         <div class="relative w-full aspect-square md:aspect-[16/9] bg-medNavyTeal border-8 border-medOlive rounded-2xl box-glow overflow-hidden">
             
-            <!-- Architecture -->
+            <!-- Architecture Base -->
             <div class="room-wall"></div>
             <div class="room-floor"></div>
 
-            <!-- FOCAL POINT: AVATAR -->
-            <div class="absolute left-1/2 bottom-[15%] -translate-x-1/2 z-30 flex justify-center w-32 h-32 md:w-48 md:h-48">
-                <!-- Drop your new avatar PNG here -->
-                <img src="assets/avatars/Main_Avatar.png" alt="Avatar" class="w-full h-full object-contain pixelated drop-shadow-[0_15px_15px_rgba(0,0,0,0.8)] z-30">
+            <!-- ========================================== -->
+            <!-- AMBIENT DECORATIONS (Non-clickable)        -->
+            <!-- ========================================== -->
+
+            <!-- Stone Arch Window (Right of the desk) -->
+            <img src="assets/icons/Stone_Arch_Window.png" alt="Window" class="room-decor w-24 md:w-36 pixelated z-10 opacity-90" style="top: 15%; left: 65%;">
+            
+            <!-- Lantern Sconce 1 (Left of the desk) -->
+            <img src="assets/icons/Lantern.png" alt="Lantern" class="room-decor w-8 md:w-12 pixelated z-10 animate-pulse drop-shadow-[0_0_15px_rgba(245,237,185,0.6)]" style="top: 25%; left: 30%;">
+            
+            <!-- Lantern Sconce 2 (Right of the desk) -->
+            <img src="assets/icons/Lantern.png" alt="Lantern" class="room-decor w-8 md:w-12 pixelated z-10 animate-pulse drop-shadow-[0_0_15px_rgba(245,237,185,0.6)]" style="top: 25%; left: 58%;">
+
+            <!-- ========================================== -->
+            <!-- INTERACTIVE FURNITURE & OBJECTS            -->
+            <!-- ========================================== -->
+
+            <!-- Overworld Map (Wall Left) -->
+            <a href="map.html" class="room-object" style="top: 15%; left: 10%; z-index: 10;">
+                <img src="assets/icons/Wall_Map.png" alt="Map" class="w-16 md:w-24 pixelated drop-shadow-xl">
+                <span>Overworld Map</span>
+            </a>
+
+            <!-- Quest Board (Wall Left, next to map) -->
+            <a href="sidequests.html" class="room-object" style="top: 18%; left: 24%; z-index: 10;">
+                <img src="assets/icons/Quest_Board.png" alt="Quest Board" class="w-16 md:w-24 pixelated drop-shadow-xl">
+                <span>Side Quests</span>
+            </a>
+
+            <!-- Artifact Inventory Chest (Floor Left, beneath map & board) -->
+            <a href="inventory.html" class="room-object" style="bottom: 10%; left: 14%; z-index: 40;">
+                <img src="assets/icons/Wooden_Chest.png" alt="Chest" class="w-16 md:w-24 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+                <span>Artifact Inventory</span>
+            </a>
+
+            <!-- Skill Tree Bookshelf (Floor Far Right) -->
+            <a href="skills.html" class="room-object" style="bottom: 25%; right: 6%; z-index: 25;">
+                <img src="assets/icons/Bookshelf.png" alt="Bookshelf" class="w-24 md:w-36 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+                <span>Skill Tree</span>
+            </a>
+
+            <!-- Campaign Log Pedestal (Floor Bottom Right, in front of window) -->
+            <a href="campaign.html" class="room-object" style="bottom: 5%; right: 22%; z-index: 45;">
+                <img src="assets/icons/Spellbook_Pedestal.png" alt="Spellbook" class="w-16 md:w-24 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+                <span>Campaign Log</span>
+            </a>
+
+            <!-- ========================================== -->
+            <!-- FOCAL POINT: AVATAR & DESK (Center-Left)   -->
+            <!-- ========================================== -->
+
+            <!-- Enlarged Avatar (Standing behind the desk) -->
+            <div class="absolute z-20 flex justify-center w-48 h-48 md:w-64 md:h-64 pointer-events-none" style="bottom: 20%; left: 42%; transform: translateX(-50%);">
+                <img src="assets/avatars/Main_Avatar.png" alt="Main Avatar" class="w-full h-full object-contain pixelated drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)]">
                 
-                <!-- Level Badge (Rounded Box touching head) -->
-                <div class="absolute -top-6 -right-4 md:-right-8 bg-medRose text-medCream border-2 border-medCream rounded-md px-3 py-1 text-lg md:text-2xl font-bold glow-rose z-40">
+                <!-- Level Badge -->
+                <div class="absolute top-2 -right-2 md:-right-6 bg-medRose text-medCream border-2 border-medCream rounded-md px-3 py-1 text-lg md:text-2xl font-bold glow-rose z-50 pointer-events-auto shadow-md">
                     LVL 5
                 </div>
             </div>
 
+            <!-- Heavy Desk (Acting as The Academy Hub link) -->
+            <a href="academy.html" class="room-object" style="bottom: 8%; left: 42%; transform: translateX(-50%); z-index: 35;">
+                <img src="assets/icons/Heavy_Desk.png" alt="Heavy Desk" class="w-32 md:w-56 pixelated drop-shadow-[0_15px_15px_rgba(0,0,0,0.8)]">
+                <span style="bottom: -25px;">The Academy</span>
+            </a>
+
             <!-- ========================================== -->
-            <!-- THE ENVIRONMENT OBJECTS (NAVIGATION)       -->
-            <!-- (Replace these icons with your new furniture PNGs later) -->
+            <!-- GAMIFICATION COIN                          -->
             <!-- ========================================== -->
-
-            <!-- Overworld Map (Wall Left) -->
-            <a href="map.html" class="room-object" style="top: 25%; left: 15%;">
-                <img src="assets/ui/WoodTable.png" class="w-12 h-12 md:w-20 md:h-20 pixelated drop-shadow-xl">
-                <span>Overworld Map</span>
-            </a>
-
-            <!-- The Academy (Wall Right) -->
-            <a href="academy.html" class="room-object" style="top: 15%; right: 25%;">
-                <img src="assets/buildings/Castle.png" class="w-16 h-16 md:w-24 md:h-24 pixelated drop-shadow-xl">
-                <span>The Academy</span>
-            </a>
-
-            <!-- Campaign Log (Floor Right) -->
-            <a href="campaign.html" class="room-object" style="bottom: 15%; right: 15%;">
-                <img src="assets/ui/SpecialPaper.png" class="w-16 h-16 md:w-24 md:h-24 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
-                <span>Campaign Log</span>
-            </a>
-
-            <!-- Inventory (Floor Left) -->
-            <a href="inventory.html" class="room-object" style="bottom: 12%; left: 22%;">
-                <img src="assets/icons/Icon_06.png" class="w-16 h-16 md:w-24 md:h-24 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
-                <span>Artifact Inventory</span>
-            </a>
-
-            <!-- Skill Tree (Wall Far Right) -->
-            <a href="skills.html" class="room-object" style="top: 40%; right: 8%;">
-                <img src="assets/icons/Icon_11.png" class="w-12 h-12 md:w-16 md:h-16 pixelated drop-shadow-xl animate-pulse">
-                <span>Skill Tree</span>
-            </a>
-
-            <!-- Side Quests (Wall Far Left) -->
-            <a href="sidequests.html" class="room-object" style="top: 50%; left: 6%;">
-                <img src="assets/icons/Icon_08.png" class="w-12 h-12 md:w-20 md:h-20 pixelated drop-shadow-xl">
-                <span>Side Quests</span>
-            </a>
-
-            <!-- GAMIFICATION COIN (Spawns inside the room) -->
-            <button id="hidden-coin" onclick="collectCoin(event, this)" class="absolute text-3xl md:text-5xl opacity-0 hover:opacity-100 transition-all z-[100] drop-shadow-[0_0_15px_rgba(214,230,133,0.8)]" title="A hidden coin!">
+            <button id="hidden-coin" onclick="collectCoin(event, this)" class="absolute text-3xl md:text-4xl opacity-0 hover:opacity-100 transition-all z-[100] drop-shadow-[0_0_15px_rgba(214,230,133,0.8)]" title="A hidden coin!">
                 🪙
             </button>
 
@@ -191,9 +218,9 @@
     </div>
 
     <!-- FOOTER COMMAND -->
-    <footer class="mt-8 text-center">
-        <a class="text-lg md:text-xl text-medRose glow-rose hover:text-medPistachio transition-colors tracking-widest">
-            Driving Directive: leverage skills to become a realm force for good!
+    <footer class="mt-4 pb-8 text-center w-full">
+        <a href="mailto:msbeebe@outlook.com" class="text-lg md:text-xl text-medRose glow-rose hover:text-medPistachio transition-colors tracking-widest">
+            > PRESS START TO TRANSMIT MESSAGE 
         </a>
     </footer>
 
@@ -203,14 +230,14 @@
             let coins = localStorage.getItem('agencia_coins') || 0;
             document.getElementById('coin-count').innerText = coins;
 
-            // Defines coordinates inside the 16:9 room box
+            // Varied coordinates inside the room for the coin to spawn
             const spawnPoints = [
-                { top: '20%', left: '10%' },
-                { top: '65%', right: '10%' },
-                { top: '35%', left: '75%' },
-                { bottom: '20%', left: '15%' },
-                { top: '30%', left: '50%' },
-                { bottom: '15%', right: '35%' }
+                { top: '25%', left: '8%' },
+                { top: '65%', right: '12%' },
+                { top: '45%', left: '78%' },
+                { bottom: '25%', left: '30%' },
+                { top: '15%', left: '45%' },
+                { bottom: '15%', right: '40%' }
             ];
 
             const coin = document.getElementById('hidden-coin');
