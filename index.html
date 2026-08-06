@@ -75,7 +75,7 @@
         .room-object span {
             opacity: 0;
             transition: opacity 0.3s;
-            margin-top: 8px;
+            margin-top: 4px; /* Hugs the label tight to the object */
             background-color: rgba(13, 27, 42, 0.9);
             padding: 4px 8px;
             border-radius: 4px;
@@ -84,8 +84,7 @@
             pointer-events: none;
             color: #D6E685;
             font-size: 0.875rem;
-            position: absolute;
-            bottom: -30px;
+            position: relative;
         }
         .room-object:hover span {
             opacity: 1;
@@ -114,10 +113,10 @@
     </div>
 
     <!-- MAIN DIORAMA WRAPPER -->
-    <div class="relative w-full max-w-5xl mx-auto mt-16 md:mt-24 mb-8">
+    <div class="relative w-full max-w-5xl mx-auto mt-16 md:mt-12 mb-8">
         
-        <!-- PERSONA BOX (Breaking the frame, Top-Left) -->
-        <div class="absolute -top-16 md:-top-12 -left-2 md:-left-8 z-50 bg-medNavyTeal/95 border-4 border-medPistachio p-4 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.8)] w-72 md:w-80 transform hover:scale-105 transition-transform cursor-default">
+        <!-- PERSONA BOX (Revealed on Avatar Hover, Breaking the frame Top-Left) -->
+        <div id="persona-box" class="absolute -top-16 md:-top-12 -left-2 md:-left-8 z-50 bg-medNavyTeal/95 border-4 border-medPistachio p-4 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.8)] w-72 md:w-80 transition-all duration-300 opacity-0 scale-95 pointer-events-none">
             <h1 class="text-xl md:text-2xl text-medPistachio glow-pistachio mb-2 border-b border-medIce/30 pb-2">Magister Madeline Beebe</h1>
             <div class="grid grid-cols-2 gap-2 text-sm text-medCream">
                 <p><span class="text-medIce">Class:</span> Scholar</p>
@@ -134,70 +133,70 @@
             <div class="room-floor"></div>
 
             <!-- ========================================== -->
-            <!-- AMBIENT DECORATIONS (Non-clickable)        -->
+            <!-- QUADRANT 3 (RIGHT): WINDOW, BOOKSHELF, PEDESTAL -->
             <!-- ========================================== -->
 
-            <!-- Stone Arch Window (Right of the desk, moved down and enlarged) -->
-            <img src="assets/icons/Stone_Arch_Window.png" alt="Window" class="room-decor w-32 md:w-48 pixelated z-10 opacity-90" style="top: 22%; left: 65%;">
-            
-            <!-- Lantern Sconce 1 (Closer to desk left) -->
-            <img src="assets/icons/Lantern.png" alt="Lantern" class="room-decor w-8 md:w-12 pixelated z-10 animate-pulse drop-shadow-[0_0_15px_rgba(245,237,185,0.6)]" style="top: 40%; left: 28%;">
-            
-            <!-- Lantern Sconce 2 (Closer to desk right) -->
-            <img src="assets/icons/Lantern.png" alt="Lantern" class="room-decor w-8 md:w-12 pixelated z-10 animate-pulse drop-shadow-[0_0_15px_rgba(245,237,185,0.6)]" style="top: 40%; left: 56%;">
+            <!-- Stone Arch Window (Right Quadrant Wall) -->
+            <img src="assets/icons/Stone_Arch_Window.png" alt="Window" class="room-decor w-40 md:w-56 pixelated z-10 opacity-90" style="top: 25%; left: 78%; transform: translateX(-50%);">
 
-            <!-- ========================================== -->
-            <!-- INTERACTIVE FURNITURE & OBJECTS            -->
-            <!-- ========================================== -->
-
-            <!-- Overworld Map (Wall Left, Enlarged) -->
-            <a href="map.html" class="room-object" style="top: 12%; left: 8%; z-index: 10;">
-                <img src="assets/icons/Wall_Map.png" alt="Map" class="w-20 md:w-32 pixelated drop-shadow-xl">
-                <span>Overworld Map</span>
-            </a>
-
-            <!-- Quest Board (Wall Left next to map, Enlarged) -->
-            <a href="sidequests.html" class="room-object" style="top: 15%; left: 26%; z-index: 10;">
-                <img src="assets/icons/Quest_Board.png" alt="Quest Board" class="w-20 md:w-32 pixelated drop-shadow-xl">
-                <span>Side Quests</span>
-            </a>
-
-            <!-- Artifact Inventory Chest (Up against wall seam, Left) -->
-            <a href="inventory.html" class="room-object" style="bottom: 32%; left: 18%; z-index: 25;">
-                <img src="assets/icons/Wooden_Chest.png" alt="Chest" class="w-16 md:w-24 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
-                <span>Artifact Inventory</span>
-            </a>
-
-            <!-- Skill Tree Bookshelf (Up against wall, Enlarged, Far Right) -->
-            <a href="skills.html" class="room-object" style="bottom: 32%; right: 5%; z-index: 25;">
-                <img src="assets/icons/Bookshelf.png" alt="Bookshelf" class="w-32 md:w-48 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+            <!-- Skill Tree Bookshelf (Resting on floor, Right Quadrant) -->
+            <a href="skills.html" class="room-object" style="bottom: 12%; right: 5%; z-index: 20;">
+                <img src="assets/icons/Bookshelf.png" alt="Bookshelf" class="w-40 md:w-56 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
                 <span>Skill Tree</span>
             </a>
 
-            <!-- Campaign Log Pedestal (Floor Bottom Right, Enlarged & Rotated 30deg) -->
-            <a href="campaign.html" class="room-object" style="bottom: 8%; right: 12%; z-index: 45;">
-                <img src="assets/icons/Spellbook_Pedestal.png" alt="Spellbook" class="w-20 md:w-32 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]" style="transform: rotate(30deg);">
+            <!-- Campaign Log Pedestal (Front Right, Enlarged & Rotated) -->
+            <a href="campaign.html" class="room-object" style="bottom: 5%; right: 28%; z-index: 45;">
+                <img src="assets/icons/Spellbook_Pedestal.png" alt="Spellbook" class="w-24 md:w-36 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]" style="transform: rotate(30deg);">
                 <span>Campaign Log</span>
             </a>
 
             <!-- ========================================== -->
-            <!-- FOCAL POINT: AVATAR & DESK                 -->
+            <!-- QUADRANT 1 (LEFT): MAP, BOARD, CHEST       -->
             <!-- ========================================== -->
 
-            <!-- Enlarged Avatar (Standing behind the desk) -->
-            <div class="absolute z-20 flex justify-center w-56 h-56 md:w-72 md:h-72 pointer-events-none" style="bottom: 20%; left: 42%; transform: translateX(-50%);">
+            <!-- Overworld Map (Wall Left) -->
+            <a href="map.html" class="room-object" style="top: 15%; left: 10%; z-index: 10;">
+                <img src="assets/icons/Wall_Map.png" alt="Map" class="w-24 md:w-36 pixelated drop-shadow-xl">
+                <span>Overworld Map</span>
+            </a>
+
+            <!-- Quest Board (Wall Left, Beside Map) -->
+            <a href="sidequests.html" class="room-object" style="top: 15%; left: 24%; z-index: 10;">
+                <img src="assets/icons/Quest_Board.png" alt="Quest Board" class="w-24 md:w-36 pixelated drop-shadow-xl">
+                <span>Side Quests</span>
+            </a>
+
+            <!-- Artifact Inventory Chest (Against Wall/Floor seam, Left) -->
+            <a href="inventory.html" class="room-object" style="bottom: 30%; left: 16%; transform: translateX(-50%); z-index: 25;">
+                <img src="assets/icons/Wooden_Chest.png" alt="Chest" class="w-24 md:w-40 pixelated drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+                <span>Artifact Inventory</span>
+            </a>
+
+            <!-- ========================================== -->
+            <!-- QUADRANT 2 (CENTER): AVATAR, DESK, LANTERNS-->
+            <!-- ========================================== -->
+
+            <!-- Lantern Sconce 1 (Left of the desk center) -->
+            <img src="assets/icons/Lantern.png" alt="Lantern" class="room-decor w-10 md:w-16 pixelated z-10 animate-pulse drop-shadow-[0_0_15px_rgba(245,237,185,0.6)]" style="top: 35%; left: 38%; transform: translateX(-50%);">
+            
+            <!-- Lantern Sconce 2 (Right of the desk center) -->
+            <img src="assets/icons/Lantern.png" alt="Lantern" class="room-decor w-10 md:w-16 pixelated z-10 animate-pulse drop-shadow-[0_0_15px_rgba(245,237,185,0.6)]" style="top: 35%; left: 62%; transform: translateX(-50%);">
+
+            <!-- Enlarged Avatar (Center, Interactive) -->
+            <div class="absolute z-20 flex justify-center w-56 h-56 md:w-72 md:h-72 cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(214,230,133,0.8)]" style="bottom: 25%; left: 50%; transform: translateX(-50%);" onmouseenter="togglePersona(true)" onmouseleave="togglePersona(false)">
                 <img src="assets/avatars/Main_Avatar.png" alt="Main Avatar" class="w-full h-full object-contain pixelated drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)]">
                 
-                <!-- Level Badge (Smaller, tighter to avatar) -->
-                <div class="absolute top-4 right-4 md:top-8 md:right-8 bg-medRose text-medCream border-2 border-medCream rounded px-2 py-0.5 text-sm md:text-lg font-bold glow-rose z-50 pointer-events-auto shadow-md">
+                <!-- Level Badge (Hidden by default, smaller & closer to head) -->
+                <div id="lvl-badge" class="absolute top-4 right-8 md:top-8 md:right-12 bg-medRose text-medCream border border-medCream rounded px-2 py-0.5 text-xs md:text-sm font-bold glow-rose z-50 pointer-events-none shadow-md opacity-0 transition-opacity duration-300">
                     LVL 5
                 </div>
             </div>
 
-            <!-- Heavy Desk (Bigger, pushed closer to foreground/bottom) -->
-            <a href="academy.html" class="room-object" style="bottom: 2%; left: 42%; transform: translateX(-50%); z-index: 35;">
-                <img src="assets/icons/Heavy_Desk.png" alt="Heavy Desk" class="w-40 md:w-64 pixelated drop-shadow-[0_15px_15px_rgba(0,0,0,0.8)]">
-                <span style="bottom: -25px;">The Academy</span>
+            <!-- Heavy Desk (Center, pushed to foreground) -->
+            <a href="academy.html" class="room-object" style="bottom: 2%; left: 50%; transform: translateX(-50%); z-index: 40;">
+                <img src="assets/icons/Heavy_Desk.png" alt="Heavy Desk" class="w-56 md:w-80 pixelated drop-shadow-[0_15px_15px_rgba(0,0,0,0.9)]">
+                <span>The Academy</span>
             </a>
 
             <!-- ========================================== -->
@@ -218,12 +217,29 @@
     </footer>
 
     <script>
-        // --- 1. Coin Gamification & Random Spawn Logic ---
+        // --- 1. Avatar Hover Reveal Logic ---
+        function togglePersona(show) {
+            const personaBox = document.getElementById('persona-box');
+            const lvlBadge = document.getElementById('lvl-badge');
+            
+            if (show) {
+                personaBox.classList.remove('opacity-0', 'scale-95');
+                personaBox.classList.add('opacity-100', 'scale-100');
+                lvlBadge.classList.remove('opacity-0');
+                lvlBadge.classList.add('opacity-100');
+            } else {
+                personaBox.classList.add('opacity-0', 'scale-95');
+                personaBox.classList.remove('opacity-100', 'scale-100');
+                lvlBadge.classList.add('opacity-0');
+                lvlBadge.classList.remove('opacity-100');
+            }
+        }
+
+        // --- 2. Coin Gamification & Random Spawn Logic ---
         function initDashboard() {
             let coins = localStorage.getItem('agencia_coins') || 0;
             document.getElementById('coin-count').innerText = coins;
 
-            // Varied coordinates inside the room for the coin to spawn
             const spawnPoints = [
                 { top: '25%', left: '8%' },
                 { top: '65%', right: '12%' },
@@ -242,7 +258,7 @@
             if (randomSpawn.right) coin.style.right = randomSpawn.right;
         }
 
-        // --- 2. Coin Flight Animation ---
+        // --- 3. Coin Flight Animation ---
         function collectCoin(event, element) {
             const pouch = document.getElementById('pouch');
             
